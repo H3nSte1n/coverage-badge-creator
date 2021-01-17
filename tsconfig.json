@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "sourceMap": false,
+    "target": "es2017",
+    "module": "commonjs",
+    "declaration": true,
+    "declarationMap": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "lib": ["es2017"],
+    "outDir": "lib",
+    "rootDir": "src",
+    "strict": true,
+    "plugins": [
+        { "transform": "ts-auto-mock/transformer", "cacheBetweenTests": false }
+    ],
+    "paths": {
+      "jest-ts-auto-mock": ["../../index"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "./tests/*"]
+}

@@ -1,0 +1,18 @@
+{
+  "covFilePath": "./coverage/coverage-summary.json",
+  "badges": {
+    "statements": {
+      "style": "flat",
+      "logo": "kotlin",
+      "logoColor": "white",
+      "color": "blue"
+    },
+    "branches": {
+      "style": "social",
+      "logo": "ktor",
+      "logoColor": "black",
+      "color": "red"
+    }
+  }
+}
+asd
