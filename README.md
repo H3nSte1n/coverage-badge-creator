@@ -121,7 +121,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 
 ## Contact
-This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://github.com/H3nSte1n), for full list of contributors see the [contributors graph](https://github.com/H3nSte1n/graphs/contributors).
+This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://github.com/H3nSte1n), for full list of contributors see the [contributors graph](https://github.com/H3nSte1n/coverage-badge-creator/graphs/contributors).
 
 
 ## Acknowledgements
@@ -159,8 +159,8 @@ This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://
 [ci]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/CI/badge.svg?style=flat
 [code-style]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/Code-Style/badge.svg?style=flat
 [maintained-shield]: https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat
-[release-shield]: https://img.shields.io/github/release/H3nSte1n/coverage-badge-creator.js.svg?style=flat
-[release-url]: https://GitHub.com/H3nSte1n/coverage-badge-creator.js/releases/
+[release-shield]: https://img.shields.io/github/release/H3nSte1n/coverage-badge-creator.svg?style=flat
+[release-url]: https://GitHub.com/H3nSte1n/coverage-badge-creator/releases/
 [issues-shield]: https://img.shields.io/github/issues/H3nSte1n/coverage-badge-creator.svg?style=flat
 [issues-url]: https://github.com/H3nSte1n/coverage-badge-creator/issues
 [license-shield]: https://img.shields.io/github/license/H3nSte1n/coverage-badge-creator.svg?style=flat
