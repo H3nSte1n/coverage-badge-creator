@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1611001027604" clover="3.2.0">
+  <project timestamp="1611001027604" name="All files">
+    <metrics statements="82" coveredstatements="82" conditionals="32" coveredconditionals="29" methods="17" coveredmethods="17" elements="131" coveredelements="128" complexity="0" loc="82" ncloc="82" packages="5" files="9" classes="9"/>
+    <package name="src">
+      <metrics statements="17" coveredstatements="17" conditionals="18" coveredconditionals="15" methods="2" coveredmethods="2"/>
+      <file name="Controller.ts" path="/Users/henry.steinhauer/Projekte/private_Projekte/badge-coverage-creator/src/Controller.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+      </file>
+      <file name="Globals.ts" path="/Users/henry.steinhauer/Projekte/private_Projekte/badge-coverage-creator/src/Globals.ts">
+        <metrics statements="11" coveredstatements="11" conditionals="18" coveredconditionals="15" methods="1" coveredmethods="1"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="22" count="2" type="cond" truecount="5" falsecount="1"/>
+        <line num="23" count="2" type="cond" truecount="5" falsecount="1"/>
+        <line num="24" count="2" type="cond" truecount="5" falsecount="1"/>
+      </file>
+    </package>
+    <package name="src.enums">
+      <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="ColorsEnum.ts" path="/Users/henry.steinhauer/Projekte/private_Projekte/badge-coverage-creator/src/enums/ColorsEnum.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.utils">
+      <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
+      <file name="FileUtils.ts" path="/Users/henry.steinhauer/Projekte/private_Projekte/badge-coverage-creator/src/utils/FileUtils.ts">
+        <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="5" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+      </file>
+      <file name="StringUtils.ts" path="/Users/henry.steinhauer/Projekte/private_Projekte/badge-coverage-creator/src/utils/StringUtils.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="13" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.validations">
+      <metrics statements="9" coveredstatements="9" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+      <file name="ColorValidation.ts" path="/Users/henry.steinhauer/Projekte/private_Projekte/badge-coverage-creator/src/validations/ColorValidation.ts">
+        <metrics statements="9" coveredstatements="9" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="17" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="11" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.worker">
+      <metrics statements="39" coveredstatements="39" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="8"/>
+      <file name="Badge.ts" path="/Users/henry.steinhauer/Projekte/private_Projekte/badge-coverage-creator/src/worker/Badge.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="11" count="10" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="14" count="10" type="stmt"/>
+      </file>
+      <file name="Coverage.ts" path="/Users/henry.steinhauer/Projekte/private_Projekte/badge-coverage-creator/src/worker/Coverage.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="8" type="stmt"/>
+        <line num="24" count="8" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="32" count="12" type="stmt"/>
+      </file>
+      <file name="Readme.ts" path="/Users/henry.steinhauer/Projekte/private_Projekte/badge-coverage-creator/src/worker/Readme.ts">
+        <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="4" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="33" count="4" type="stmt"/>
+        <line num="34" count="6" type="stmt"/>
+        <line num="35" count="6" type="stmt"/>
+        <line num="36" count="6" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

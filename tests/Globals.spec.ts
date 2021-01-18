@@ -5,7 +5,7 @@ describe('Globals', () => {
   describe('init', () => {
     it('should take default values if config property not exist', () => {
       Globals.init({});
-      expect(Globals.DEFAULT_COV_PATH).toEqual('./coverage/report.json');
+      expect(Globals.DEFAULT_COV_PATH).toEqual('./coverage/coverage-summary.json');
       expect(Globals.BASE_README_PATH).toEqual('./README.md');
       expect(Globals.BADGES).toEqual({});
     })
