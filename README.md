@@ -164,4 +164,4 @@ This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://
 [issues-shield]: https://img.shields.io/github/issues/H3nSte1n/coverage-badge-creator.svg?style=flat
 [issues-url]: https://github.com/H3nSte1n/coverage-badge-creator/issues
 [license-shield]: https://img.shields.io/github/license/H3nSte1n/coverage-badge-creator.svg?style=flat
-[license-url]: https://github.com/H3nSte1n/coverage-badge-creator/blob/master/LICENSE.txt
+[license-url]: https://github.com/H3nSte1n/coverage-badge-creator/blob/master/LICENSE
