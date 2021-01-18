@@ -1,3 +1,6 @@
+<h1>Coverage Badge Creator</h1>  
+<br>
+
 ![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$cov$)
 ![CI][ci]
 ![Code-Style][code-style]
@@ -36,6 +39,7 @@
 
 
 ## About The Project
+Coverage Badge Creator is a super easy to use tool for your project. It creates badges based on your test coverage and inserts them into the README. All without any third-party libraries or tools.
 
 
 ## Installation
@@ -57,7 +61,8 @@
         "test": "nyc --reporter=json-summary mocha"
       }
       ```
-
+      
+      <br>
 2. Insert one of the following keys anywhere in your README. These will be replaced by the coverage-badge-creator with the appropriate badge.
 
     The following keys are available:
@@ -66,8 +71,9 @@
      * $functions$
      * $lines$
  
-    _important are also the surrounding dollar signs_
- 
+    _important are also the surrounding dollar signs_  
+    
+    <br>
  3. Now you can create the badges in two ways.
  
     Create badge from the CLI:
