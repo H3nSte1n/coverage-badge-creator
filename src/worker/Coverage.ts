@@ -23,7 +23,7 @@ export class Coverage {
       coveragesCategories[key] = this.getCoverageStats(this.CoverageJSON.total[key]);
       this.medianCov += this.CoverageJSON.total[key].pct;
     });
-    coveragesCategories['cov'] = this.getCoverageStats({ pct: this.medianCov / Globals.COVERAGE_CATEGORIES.length });
+    coveragesCategories['coverage'] = this.getCoverageStats({ pct: this.medianCov / Globals.COVERAGE_CATEGORIES.length });
 
     return coveragesCategories;
   }

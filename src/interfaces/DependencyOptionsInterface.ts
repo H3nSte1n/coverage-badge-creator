@@ -2,7 +2,7 @@ import { BadgeOptionsObjectInterface } from './BadgeOptionsInterface';
 
 export interface DependencyOptionsInterface {
   badges?: ConfigBadge;
-  covFilePath?: string;
+  coverage_file_path?: string;
   readmeFilePath?: string;
 }
 

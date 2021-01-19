@@ -19,7 +19,7 @@ export class Globals {
   }
 
   static init(config: DependencyOptionsInterface) {
-    this.DEFAULT_COV_PATH = config?.covFilePath || this.DEFAULT_COV_PATH;
+    this.DEFAULT_COV_PATH = config?.coverage_file_path || this.DEFAULT_COV_PATH;
     this.BASE_README_PATH = config?.readmeFilePath || this.BASE_README_PATH;
     this.BADGES = config?.badges || this.BADGES;
   }
