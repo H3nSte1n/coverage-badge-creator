@@ -1,5 +1,5 @@
 import { createMock } from "ts-auto-mock";
-import { Badge } from "../../src/worker/Badge"
+import { Badge } from "../../src/workers/BadgeWorker"
 import { BadgeStatsInterface } from "../../src/interfaces/BadgeStatsInterface";
 
 describe('Badge', () => {

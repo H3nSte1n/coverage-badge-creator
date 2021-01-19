@@ -1,7 +1,7 @@
 import { createMock } from "ts-auto-mock"
-import { Badge } from "../../src/worker/Badge"
+import { Badge } from "../../src/workers/BadgeWorker"
 import { ConfigBadge } from "../../src/interfaces/DependencyOptionsInterface"
-import { Readme } from "../../src/worker/Readme"
+import { Readme } from "../../src/workers/ReadmeWorker"
 import { FileUtils } from "../../src/utils/FileUtils"
 import { StringUtils } from "../../src/utils/StringUtils"
 

@@ -1,7 +1,7 @@
 import { Controller } from '../src/Controller';
 import { Globals } from '../src/Globals';
-import { Coverage } from '../src/worker/Coverage';
-import { Readme } from '../src/worker/Readme';
+import { Coverage } from '../src/workers/CoverageWorker';
+import { Readme } from '../src/workers/ReadmeWorker';
 
 describe('Controller', () => {
   beforeAll(() => {

@@ -1,4 +1,4 @@
-import { Badge } from './Badge';
+import { Badge } from './BadgeWorker';
 import { BadgeStatsObjInterface } from '../interfaces/BadgeStatsInterface';
 import { ConfigBadge } from '../interfaces/DependencyOptionsInterface';
 import { ReplacementAttributes } from '../interfaces/ReplacementAttributes';
