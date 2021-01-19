@@ -1,5 +1,5 @@
 import { createMock } from 'ts-auto-mock';
-import { Coverage } from '../../src/worker/Coverage';
+import { Coverage } from '../../src/workers/CoverageWorker';
 import { FileUtils } from '../../src/utils/FileUtils';
 import { ColorValidation } from '../../src/validations/ColorValidation';
 import { BadgeStatsInterface } from '../../src/interfaces/BadgeStatsInterface';

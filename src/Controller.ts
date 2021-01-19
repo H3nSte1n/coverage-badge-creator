@@ -1,5 +1,5 @@
-import { Coverage } from './worker/Coverage';
-import { Readme } from './worker/Readme';
+import { Coverage } from './workers/CoverageWorker';
+import { Readme } from './workers/ReadmeWorker';
 import { BadgeStatsObjInterface } from './interfaces/BadgeStatsInterface';
 import { Globals } from './Globals';
 
