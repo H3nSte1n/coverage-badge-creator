@@ -51,10 +51,6 @@ describe('Readme', () => {
   })
 
   describe('#insertCov', () => {
-    afterEach(() => {    
-      jest.clearAllMocks();
-    });
-
     const BadgeStatsObj = {
       statements: {
         coverage: 90,

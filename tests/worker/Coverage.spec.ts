@@ -6,6 +6,9 @@ import { BadgeStatsInterface } from '../../src/interfaces/BadgeStatsInterface';
 import { Globals } from '../../src/Globals';
 
 describe('Coverage', () => {
+  beforeAll(() => {
+    Globals.DEFAULT_COV_PATH = "./tests/data/test-coverage-report.json"
+  })
   beforeEach(() => {
     jest.clearAllMocks();
   })
@@ -26,6 +29,7 @@ describe('Coverage', () => {
   })
 
   describe('#validate', () => {
+
     it('should return object with coverage columns', () => {
       const result = Coverage.validate();
       expect(Object.keys(result).length).toBeGreaterThan(0)

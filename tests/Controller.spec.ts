@@ -1,13 +1,18 @@
 import { Controller } from '../src/Controller';
+import { Globals } from '../src/Globals';
 import { Coverage } from '../src/worker/Coverage';
 import { Readme } from '../src/worker/Readme';
 
 describe('Controller', () => {
+  beforeAll(() => {
+    Globals.DEFAULT_COV_PATH = "./tests/data/test-coverage-report.json"
+  })
   beforeEach(() => {
     jest.clearAllMocks();
   })
 
   describe('#run', () => {
+    
     it('should call Coverage.#init, Coverage.#validate and #prepareData, #insertCov from Readme', () => {
       const initSpy = jest.spyOn(Coverage, 'init');
       const validateSpy = Coverage.validate = jest.fn();
