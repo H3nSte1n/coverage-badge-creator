@@ -1,3 +1,6 @@
+<h1>Coverage Badge Creator</h1>  
+<br>
+
 ![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$cov$)
 ![CI][ci]
 ![Code-Style][code-style]
@@ -36,6 +39,7 @@
 
 
 ## About The Project
+Coverage Badge Creator is a super easy to use tool for your project. It creates badges based on your test coverage and inserts them into the README. All without any third-party libraries or tools.
 
 
 ## Installation
@@ -45,11 +49,45 @@
 
 
 ## Usage
-Create badge from the CLI
-```sh
-    npm run coverage-badge-creator
-```
 
+1. First, set up your test environment so that it creates a test summary for you    
+
+    * jest  
+    In jest config you need to add 'json-summary' to coverageReporters. https://jestjs.io/docs/en/configuration  
+
+    * mocha
+      ```sh
+      {
+        "test": "nyc --reporter=json-summary mocha"
+      }
+      ```
+      
+      <br>
+2. Insert one of the following keys anywhere in your README. These will be replaced by the coverage-badge-creator with the appropriate badge.
+
+    The following keys are available:
+     * $institute$
+     * $branches$
+     * $functions$
+     * $lines$
+ 
+    _important are also the surrounding dollar signs_  
+    
+    <br>
+ 3. Now you can create the badges in two ways.
+ 
+    Create badge from the CLI:
+    ```sh
+        npm run coverage-badge-creator
+    ```
+    
+    Or add it to your package.json scripts:
+    ```sh
+    "scripts": {
+      "coverage:badge": "coverage-badge-creator",
+    }   
+    ```
+    
 
 ## Config
 There are various ways to configure the badges according to your wishes. To do this, you only need to create a new file called **.badge-config**. Then you have the following options:
@@ -65,13 +103,12 @@ There are various ways to configure the badges according to your wishes. To do t
 ```
  {
    badges: {
-     cov: {
+     coverage: {
       logo: 'foo'
       color: 'bar'
      }
    }
  }
-        ...
 ```
 **Depending on your test tool, you will probably have the following test coverages:**
  * coverage
@@ -96,7 +133,7 @@ There are various ways to configure the badges according to your wishes. To do t
 
 
 ## Requirements
-* Node > v8.0.0
+* Node > v10.0.0
 
 
 ## Built With
