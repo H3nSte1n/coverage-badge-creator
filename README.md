@@ -1,7 +1,7 @@
 <h1>Coverage Badge Creator</h1>  
 <br>
 
-![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$cov$)
+![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$)
 ![CI][ci]
 ![Code-Style][code-style]
 
@@ -66,7 +66,8 @@ Coverage Badge Creator is a super easy to use tool for your project. It creates 
 2. Insert one of the following keys anywhere in your README. These will be replaced by the coverage-badge-creator with the appropriate badge.
 
     The following keys are available:
-     * $institute$
+     * $coverage$
+     * $statements$
      * $branches$
      * $functions$
      * $lines$
@@ -95,7 +96,7 @@ There are various ways to configure the badges according to your wishes. To do t
 ### coverage file path
 ```
 {
-  covFilePath: './coverage/json-summary.json'
+  coverage_file_path: './coverage/json-summary.json'
 }
 ```
 
