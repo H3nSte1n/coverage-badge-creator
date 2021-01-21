@@ -3,6 +3,7 @@
 
 ![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$)
 ![CI][ci]
+![Build][build]
 ![Code-Style][code-style]
 
 [![MIT License][license-shield]][license-url]
@@ -195,6 +196,7 @@ This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://
 
 <!--infos-->
 [ci]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/CI/badge.svg?style=flat
+[build]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/Build/badge.svg?style=flat
 [code-style]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/Code-Style/badge.svg?style=flat
 [maintained-shield]: https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat
 [release-shield]: https://img.shields.io/github/release/H3nSte1n/coverage-badge-creator.svg?style=flat
