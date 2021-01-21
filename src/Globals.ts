@@ -26,7 +26,7 @@ export class Globals {
   }
 
   static loadArgv(): Promise<void> {
-    return new Promise(() => {
+    return new Promise((resolve, _reject) => {
       type Options = keyof typeof ArgvOptionsEnum;
 
       Object.keys(ArgvOptionsEnum).forEach((argvOptionKey) => {
@@ -36,6 +36,7 @@ export class Globals {
           Globals[globalKey] = process.argv[argvOptionIndex + 1];
         }
       });
+      resolve();
     })
   }
 }
