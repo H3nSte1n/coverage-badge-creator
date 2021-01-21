@@ -133,13 +133,24 @@ There are various ways to configure the badges according to your wishes. To do t
  
  _For more information on all options, see -> ![](https://img.shields.io/badge/Shields.io-informational?style=for-the-badge&logo=Shields.io&logoColor=white&color=black&link=https://shields.io/)_
 
+### Extended
+**In addition, you have further options in the cli.**
+
+* --config
+  > This allows you to change the path and name of the configuration file.
+
+  ```sh
+  "scripts": {
+    "coverage:badge": "coverage-badge-creator --config './badge-coverage-config.json'",
+  }
+  ```
 
 ## Requirements
 * Node > v10.0.0
 
 
 ## Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section lists all programming languages and main frameworks.
 * [Node](https://nodejs.org/en/)
 * [Typescript](https://www.typescriptlang.org/)
 * [Jest](https://jestjs.io/)
