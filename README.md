@@ -68,9 +68,9 @@ Coverage Badge Creator is a super easy to use tool for your project. It creates 
 
     The following keys are available:
      * $coverage$
-     * $statements$
-     * $branches$
-     * $functions$
+     * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$statements$)
+     * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$branches$)
+     * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$functions$)
      * $lines$
  
     _important are also the surrounding dollar signs_  
@@ -112,7 +112,7 @@ There are various ways to configure the badges according to your wishes. To do t
    }
  }
 ```
-**Depending on your test tool, you will probably have the following test coverages:**
+**Depending on your test tool, you will probably have the following badges available for configuration:**
  * coverage
  * statements
  * branches
