@@ -26,6 +26,7 @@
       <ul>
         <li><a href="#coverage-file-path">Coverage file path</a></li>
         <li><a href="#badges">Badges</a></li>
+        <li><a href="#extended">Extended</a></li>
       </ul>
     </li>
     <li><a href="#requirements">Requirements</a></li>
