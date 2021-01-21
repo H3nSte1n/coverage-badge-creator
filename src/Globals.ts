@@ -6,7 +6,6 @@ export class Globals {
   static CONFIG_PATH = './.badge-config';
   static DEFAULT_COV_PATH = './coverage/coverage-summary.json';
   static COVERAGE_CATEGORIES = ['statements', 'branches', 'functions', 'lines'];
-  static ARGV_OPTIONS = ['--config'];
   static BADGE_BASE_URL = '![](https://img.shields.io/badge/';
   static BADGE_BASE_URL_PATTERN = '\\!\\[]\\(https:\\/\\/img\\.shields\\.io\\/badge\\/.*prefix=&PATTERN&\\)';
   static BASE_README_PATH = './README.md';

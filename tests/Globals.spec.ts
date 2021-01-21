@@ -1,4 +1,3 @@
-import { ArgvOptionsEnum } from "../src/enums/ArgvOptionsEnum";
 import { Globals } from "../src/Globals"
 
 describe('Globals', () => {
