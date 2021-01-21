@@ -25,4 +25,14 @@ describe('Globals', () => {
       expect(Globals.BADGES).toEqual(config.badges);
     })
   })
+
+  describe('loadArgv', () => {
+    it('should change config path when passing the --config option', () => {
+      Globals.CONFIG_PATH = 'bar/foo.json';
+      process.argv = ['--config', 'foo/bar.json'];
+
+      Globals.loadArgv();
+      expect(Globals.CONFIG_PATH).toEqual('foo/bar.json');
+    })
+  })
 })

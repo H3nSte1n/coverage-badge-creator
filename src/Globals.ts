@@ -1,4 +1,5 @@
 import { DependencyOptionsInterface } from './interfaces/DependencyOptionsInterface';
+import { ArgvOptionsEnum } from './enums/ArgvOptionsEnum';
 
 export class Globals {
   private static instance: Globals;
@@ -22,5 +23,19 @@ export class Globals {
     this.DEFAULT_COV_PATH = config?.coverage_file_path || this.DEFAULT_COV_PATH;
     this.BASE_README_PATH = config?.readmeFilePath || this.BASE_README_PATH;
     this.BADGES = config?.badges || this.BADGES;
+  }
+
+  static loadArgv(): Promise<void> {
+    return new Promise(() => {
+      type Options = keyof typeof ArgvOptionsEnum;
+
+      Object.keys(ArgvOptionsEnum).forEach((argvOptionKey) => {
+        const argvOptionIndex = process.argv.indexOf(ArgvOptionsEnum[argvOptionKey as Options]);
+        if (argvOptionIndex !== -1) {
+          const globalKey: Options = argvOptionKey as any;
+          Globals[globalKey] = process.argv[argvOptionIndex + 1];
+        }
+      });
+    })
   }
 }

@@ -16,7 +16,7 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "release": "npm run cover && standard-version --no-verify",
-    "coverage:badge": "node lib/index.js"
+    "coverage:badge": "node lib/index.js --config './.conversion-badge-config'"
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
