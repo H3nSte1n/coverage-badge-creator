@@ -20,6 +20,7 @@ export class SetupValidation {
 
   static async loadConfig(): Promise<void> {
     console.info('\nStep 1 -> Loading Configurations process started');
+    await Globals.loadArgv();
     const configExist = SetupValidation.checkIfConfigFileExists();
     if (!configExist) return;
     return this.parseConfig();
@@ -28,6 +29,7 @@ export class SetupValidation {
   private static parseConfig(): Promise<void> {
     const fileBody = FileUtils.readFile(Globals.CONFIG_PATH);
     let config = null;
+
     return new Promise((resolve, reject) => {
       try {
         config = FileUtils.parseFile<DependencyOptionsInterface>(fileBody);
