@@ -20,8 +20,6 @@ export class Globals {
   }
 
   static init(config: DependencyOptionsInterface) {
-    console.info(config);
-    console.info('ADSADA');
     this.DEFAULT_COV_PATH = config?.coverage_file_path || this.DEFAULT_COV_PATH;
     this.BASE_README_PATH = config?.readmeFilePath || this.BASE_README_PATH;
     this.BADGES = config?.badges || this.BADGES;
