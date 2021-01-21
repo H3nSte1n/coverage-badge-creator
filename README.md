@@ -68,9 +68,9 @@ Coverage Badge Creator is a super easy to use tool for your project. It creates 
 
     The following keys are available:
      * $coverage$
-     * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$statements$)
-     * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$branches$)
-     * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$functions$)
+     * $statements$
+     * $branches$
+     * $functions$
      * $lines$
  
     _important are also the surrounding dollar signs_  
