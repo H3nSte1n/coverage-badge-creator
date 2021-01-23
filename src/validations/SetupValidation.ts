@@ -7,8 +7,8 @@ export class SetupValidation {
     console.info('\nStep 2 -> Setup check process started');
 
     return Promise.all([
-      this.checkIfCovFileExists(Globals.DEFAULT_COV_PATH),
-      this.checkIfREADMEFileExists(Globals.BASE_README_PATH),
+      this.checkFileExists(Globals.DEFAULT_COV_PATH, '❌ No Coverage file found', '✅ Coverage file exist'),
+      this.checkFileExists(Globals.BASE_README_PATH, '❌ No README file found', '✅ README file exist')
     ])
       .then((messages) => {
         console.info(messages.join('\n'));
@@ -35,8 +35,8 @@ export class SetupValidation {
         config = FileUtils.parseFile<DependencyOptionsInterface>(fileBody);
         Globals.init(config);
       } catch {
-        reject();
         console.error(`❌ Parsing configuration file failed. Configuration is incorrect.`);
+        reject();
       }
       resolve();
       console.info('✅ Configuration loaded');
@@ -46,27 +46,18 @@ export class SetupValidation {
   private static checkIfConfigFileExists() {
     const fileExist = FileUtils.checkFileExist(Globals.CONFIG_PATH);
     if (!fileExist) {
-      console.error(`❌ No Config file found`);
-      console.info('Skip...');
-      return false;
+      console.error(`❌ No Config file found\nSkip...`);
+    } else {
+      console.info(`✅ Config file exist`);
     }
-    console.info(`✅ Config file exist`);
-    return true;
+    return !!fileExist;
   }
 
-  private static checkIfCovFileExists(path: string): Promise<string | boolean> {
+  private static checkFileExists(path: string, rejectMessage: string, resolveMessage: string) {
     return new Promise((resolve, reject) => {
       const fileExist = FileUtils.checkFileExist(path);
-      if (!fileExist) reject('❌ No Coverage file found');
-      resolve('✅ Coverage file exist');
-    });
-  }
-
-  private static checkIfREADMEFileExists(path: string): Promise<string | boolean> {
-    return new Promise((resolve, reject) => {
-      const fileExist = FileUtils.checkFileExist(path);
-      if (!fileExist) reject('❌ No README file found');
-      resolve('✅ README file exist');
+      if (!fileExist) reject(rejectMessage);
+      resolve(resolveMessage);
     });
   }
 }
