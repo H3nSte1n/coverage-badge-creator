@@ -6,7 +6,7 @@ export class FileUtils {
     return true;
   }
   static readFile(filePath: string): string {
-    const file: string = fs.readFileSync(filePath, 'utf-8');
+    const file: string = fs.readFileSync(filePath, 'utf8');
 
     return file;
   }
