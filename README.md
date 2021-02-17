@@ -46,7 +46,7 @@ Coverage Badge Creator is a super easy to use tool for your project. It creates 
 
 ## Installation
 ```sh
-   npm install --save-dev coverage-badge-creator
+npm install --save-dev coverage-badge-creator
 ```
 
 
@@ -78,14 +78,14 @@ Coverage Badge Creator is a super easy to use tool for your project. It creates 
     _important are also the surrounding dollar signs_  
     
     <br>
- 3. Now you can create the badges in two ways.
+ 3. Now you can create the badges.
  
-    Create badge from the CLI:
+    Add the command to your package.json scripts block:
     ```sh
-        npm run coverage-badge-creator
+    npm run coverage-badge-creator
     ```
     
-    Or add it to your package.json scripts:
+    and run it from the CLI:
     ```sh
     "scripts": {
       "coverage:badge": "coverage-badge-creator",
