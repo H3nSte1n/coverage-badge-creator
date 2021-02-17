@@ -45,11 +45,11 @@ Coverage Badge Creator is a super easy to use tool for your project. It creates 
 
 
 ## Installation
-[`npm`](https://www.npmjs.com/package/jest):
+[`npm`](https://www.npmjs.com/package/coverage-badge-creator):
 ```sh
 npm install --save-dev coverage-badge-creator
 ```
-[`yarn`](https://yarnpkg.com/en/package/jest):
+[`yarn`](https://yarnpkg.com/en/package/coverage-badge-creator):
 ```sh
 yarn add --dev coverage-badge-creator
 ```
