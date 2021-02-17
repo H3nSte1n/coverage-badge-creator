@@ -6,8 +6,6 @@ config.ts
 jestconfig.json
 .gitignore
 coverage
-CODE_OF_CONDUCT.md
-LICENSE
 .tool-versions
 nodemon.json
 node_modules
