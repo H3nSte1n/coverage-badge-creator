@@ -52,10 +52,11 @@ Coverage Badge Creator is a super easy to use tool for your project. It creates 
 
 ## Usage
 
-1. First, set up your test environment so that it creates a test summary for you    
+1. First you need to set up your test environment.   
 
-    * jest  
-    In jest config you need to add 'json-summary' to coverageReporters. https://jestjs.io/docs/en/configuration  
+    * jest   
+    
+      > In jest config you need to add 'json-summary' to coverageReporters. https://jestjs.io/docs/en/configuration  
 
     * mocha
       ```sh
@@ -93,7 +94,9 @@ Coverage Badge Creator is a super easy to use tool for your project. It creates 
     
 
 ## Config
-There are various ways to configure the badges according to your wishes. To do this, you only need to create a new file called **.badge-config**. Then you have the following options:
+There are various ways to configure the badges according to your wishes. To do this, you only need to create a new file called **.badge-config**. Then you have the following options:   
+
+_For a simple example click [here](https://github.com/H3nSte1n/coverage-badge-creator/blob/main/.conversion-badge-config)._
 
 ### coverage file path
 ```
