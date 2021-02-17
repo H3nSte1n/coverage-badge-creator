@@ -1,6 +1,6 @@
 {
   "name": "coverage-badge-creator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Coverage Badge Creator creates badges based on your test coverage and inserts them into the README",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
