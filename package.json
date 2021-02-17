@@ -1,6 +1,6 @@
 {
   "name": "coverage-badge-creator",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Coverage Badge Creator creates badges based on your test coverage and inserts them into the README",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,7 +16,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
