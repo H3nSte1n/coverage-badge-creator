@@ -13,7 +13,6 @@
     "target": "es2017",
     "module": "commonjs",
     "declaration": true,
-    "declarationMap": true,
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,

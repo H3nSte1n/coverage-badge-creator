@@ -1,7 +1,7 @@
 {
   "name": "coverage-badge-creator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Coverage Badge Creator creates badges based on your test coverage and inserts them into the README",
   "scripts": {
     "test": "jest --colors --coverage --config jestconfig.json",
     "test:dev": "jest --watch --colors --verbose --config jestconfig.json",
