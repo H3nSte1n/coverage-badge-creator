@@ -9,3 +9,5 @@ coverage
 .tool-versions
 nodemon.json
 node_modules
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
