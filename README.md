@@ -85,15 +85,15 @@ yarn add --dev coverage-badge-creator
  3. Now you can create the badges.
  
     Add the command to your package.json scripts block:
-    ```sh
-    npm run coverage-badge-creator
+    ```json
+    "scripts": {
+      "coverage:badge": "coverage-badge-creator",
+    }   
     ```
     
     and run it from the CLI:
     ```sh
-    "scripts": {
-      "coverage:badge": "coverage-badge-creator",
-    }   
+    npm run coverage:badge
     ```
     
 
