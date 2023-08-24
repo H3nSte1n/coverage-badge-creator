@@ -8,7 +8,7 @@ export class SetupValidation {
 
     return Promise.all([
       this.checkFileExists(Globals.DEFAULT_COV_PATH, '❌ No Coverage file found', '✅ Coverage file exist'),
-      this.checkFileExists(Globals.BASE_README_PATH, '❌ No README file found', '✅ README file exist')
+      this.checkFileExists(Globals.BASE_README_PATH, '❌ No README file found', '✅ README file exist'),
     ])
       .then((messages) => {
         console.info(messages.join('\n'));

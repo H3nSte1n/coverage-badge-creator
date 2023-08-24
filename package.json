@@ -1,6 +1,6 @@
 {
   "name": "coverage-badge-creator",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Coverage Badge Creator creates badges based on your test coverage and inserts them into the README",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -62,7 +62,7 @@
     "tslint-config-prettier": "^1.18.0",
     "ttypescript": "^1.5.12",
     "typescript": "^4.1.2",
-    "nodemon": "^2.0.18",
+    "nodemon": "^3.0.0",
     "got": ">=11.8.5"
   }
 }
