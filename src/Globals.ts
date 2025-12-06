@@ -1,5 +1,6 @@
 import { DependencyOptionsInterface } from './interfaces/DependencyOptionsInterface';
 import { ArgvOptionsEnum } from './enums/ArgvOptionsEnum';
+import path from 'path';
 
 export class Globals {
   private static instance: Globals;
@@ -11,7 +12,6 @@ export class Globals {
   static BASE_README_PATH = './README.md';
   static BADGES = {};
 
-  /* istanbul ignore next */
   private constructor() {
     if (!Globals.instance) {
       Globals.instance = new Globals();
@@ -20,8 +20,12 @@ export class Globals {
   }
 
   static init(config: DependencyOptionsInterface) {
-    this.DEFAULT_COV_PATH = config?.coverage_file_path || this.DEFAULT_COV_PATH;
-    this.BASE_README_PATH = config?.readmeFilePath || this.BASE_README_PATH;
+    this.DEFAULT_COV_PATH = config?.coverage_file_path
+      ? path.resolve(process.cwd(), config.coverage_file_path)
+      : this.DEFAULT_COV_PATH;
+    this.BASE_README_PATH = config?.readmeFilePath
+      ? path.resolve(process.cwd(), config.readmeFilePath)
+      : this.BASE_README_PATH;
     this.BADGES = config?.badges || this.BADGES;
   }
 
