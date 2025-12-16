@@ -7,7 +7,6 @@ import { FileUtils } from '../utils/FileUtils';
 import { StringUtils } from '../utils/StringUtils';
 
 export class Readme {
-  private static filePath = Globals.BASE_README_PATH;
   private static replacementAttributes: ReplacementAttributes[];
 
   static prepareData(BadgeStatsObj: BadgeStatsObjInterface, urlConfig: ConfigBadge) {
@@ -28,13 +27,14 @@ export class Readme {
   }
 
   static insertCov() {
-    let file: string = FileUtils.readFile(this.filePath);
+    const filePath = Globals.BASE_README_PATH;
+    let file: string = FileUtils.readFile(filePath);
 
     this.replacementAttributes.forEach((util) => {
       const baseUrlPattern = StringUtils.replaceString('&PATTERN&', util.pattern, Globals.BADGE_BASE_URL_PATTERN);
       const urlPattern = new RegExp(`(${baseUrlPattern})|(${util.pattern})`, 'gi');
       file = StringUtils.replaceString(urlPattern, util.url, file);
     });
-    FileUtils.writeFile(this.filePath, file);
+    FileUtils.writeFile(filePath, file);
   }
 }
