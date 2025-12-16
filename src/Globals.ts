@@ -20,12 +20,16 @@ export class Globals {
   }
 
   static init(config: DependencyOptionsInterface) {
-    this.DEFAULT_COV_PATH = config?.coverage_file_path
-      ? path.resolve(process.cwd(), config.coverage_file_path)
-      : this.DEFAULT_COV_PATH;
-    this.BASE_README_PATH = config?.readmeFilePath
-      ? path.resolve(process.cwd(), config.readmeFilePath)
-      : this.BASE_README_PATH;
+    const covPath = config?.coverage_file_path || this.DEFAULT_COV_PATH;
+    this.DEFAULT_COV_PATH = path.isAbsolute(covPath)
+      ? covPath
+      : path.resolve(process.cwd(), covPath);
+
+    const readmePath = config?.readmeFilePath || this.BASE_README_PATH;
+    this.BASE_README_PATH = path.isAbsolute(readmePath)
+      ? readmePath
+      : path.resolve(process.cwd(), readmePath);
+
     this.BADGES = config?.badges || this.BADGES;
   }
 
