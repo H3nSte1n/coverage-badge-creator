@@ -10,22 +10,16 @@
     "noUnusedParameters": true,
     "pretty": true,
     "sourceMap": false,
-    "target": "es2017",
+    "target": "es2020",
     "module": "commonjs",
     "declaration": true,
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "lib": ["es2017"],
+    "lib": ["es2020"],
     "outDir": "lib",
     "rootDir": "src",
-    "strict": true,
-    "plugins": [
-        { "transform": "ts-auto-mock/transformer", "cacheBetweenTests": false }
-    ],
-    "paths": {
-      "jest-ts-auto-mock": ["../../index"]
-    }
+    "strict": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "./tests/*"]

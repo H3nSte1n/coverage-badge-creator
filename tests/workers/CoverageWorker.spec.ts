@@ -1,4 +1,3 @@
-import { createMock } from 'ts-auto-mock';
 import { Coverage } from '../../src/workers/CoverageWorker';
 import { FileUtils } from '../../src/utils/FileUtils';
 import { ColorValidation } from '../../src/validations/ColorValidation';
@@ -51,7 +50,7 @@ describe('Coverage', () => {
     })
 
     it('should return object of interface #CoverageColumnInterface', () => {
-      const mock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
+      const mock: BadgeStatsInterface = { coverage: 0, color: '' };
       const fakeCovColumn = {pct: 70};
       const result = Coverage.getCoverageStats(fakeCovColumn);
       expect(Object.keys(result)).toEqual(Object.keys(mock))

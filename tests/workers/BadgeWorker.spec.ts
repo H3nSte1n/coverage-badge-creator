@@ -1,4 +1,3 @@
-import { createMock } from "ts-auto-mock";
 import { Badge } from "../../src/workers/BadgeWorker"
 import { BadgeStatsInterface } from "../../src/interfaces/BadgeStatsInterface";
 
@@ -6,14 +5,14 @@ describe('Badge', () => {
 
   describe('#create', () => {
     it('should return a string', () => {
-      const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
+      const statsMock: BadgeStatsInterface = { coverage: 0, color: '' };
       const result = Badge.create({}, statsMock, "")
       expect(typeof result).toEqual('string');
       expect(result.length).toBeGreaterThan(0);
     })
 
     it('should append options to string', () => {
-      const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
+      const statsMock: BadgeStatsInterface = { coverage: 0, color: '' };
       const optionsObj = {
         style: "flat-square",
         logo: "Kotlin",
@@ -35,7 +34,7 @@ describe('Badge', () => {
     })
 
     it('should append prefix to string', () => {
-      const statsMock: BadgeStatsInterface = createMock<BadgeStatsInterface>();
+      const statsMock: BadgeStatsInterface = { coverage: 0, color: '' };
       const testString = `prefix=$statements$`;
       const result = Badge.create({}, statsMock, "statements")
       expect(result).toMatch(testString);
