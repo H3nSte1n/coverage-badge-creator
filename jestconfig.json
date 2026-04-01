@@ -1,6 +1,6 @@
 {
   "transform": {
-    "^.+\\.(t|j)sx?$": "ts-jest"
+    "^.+\\.tsx?$": "ts-jest"
   },
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
@@ -10,10 +10,5 @@
   ],
   "coveragePathIgnorePatterns": [
     "/node_modules/"
-  ],
-  "globals": {
-    "ts-jest": {
-      "compiler": "ttypescript"
-    }
-  }
+  ]
 }

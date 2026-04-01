@@ -1,4 +1,3 @@
-import { createMock } from "ts-auto-mock"
 import { Badge } from "../../src/workers/BadgeWorker"
 import { ConfigBadge } from "../../src/interfaces/DependencyOptionsInterface"
 import { Readme } from "../../src/workers/ReadmeWorker"
@@ -28,7 +27,7 @@ describe('Readme', () => {
     }
 
     it('should create three badges', () => {
-      const configBadgeMock: ConfigBadge = createMock<ConfigBadge>();
+      const configBadgeMock: ConfigBadge = {};
       const createSpy = jest.spyOn(Badge, 'create');
       Readme.prepareData(BadgeStatsObj, configBadgeMock)
       
@@ -36,13 +35,13 @@ describe('Readme', () => {
     })
 
     it('should return instance of Readme', () => {
-      const configBadgeMock: ConfigBadge = createMock<ConfigBadge>();
+      const configBadgeMock: ConfigBadge = {};
       const result = Readme.prepareData({}, configBadgeMock)
       expect(result).toBe(Readme);
     })
 
     it('should cancel run if BadgeStatsObj is null', () => {
-      const configBadgeMock: ConfigBadge = createMock<ConfigBadge>();
+      const configBadgeMock: ConfigBadge = {};
       const createSpy = jest.spyOn(Badge, 'create');
       Readme.prepareData({}, configBadgeMock)
       
@@ -77,7 +76,7 @@ describe('Readme', () => {
       expect(readFileSpy).toHaveBeenCalledTimes(0)
     })
     it('should call #replaceString 3 times if replacementAttributes has 3 items', () => {
-      const configBadgeMock: ConfigBadge = createMock<ConfigBadge>();
+      const configBadgeMock: ConfigBadge = {};
       const readFileSpy = jest.spyOn(StringUtils, 'replaceString');
       Readme.prepareData(BadgeStatsObj, configBadgeMock).insertCov();
       expect(readFileSpy).toHaveBeenCalledTimes(6)

@@ -30,7 +30,7 @@ export class Globals {
   }
 
   static loadArgv(): Promise<void> {
-    return new Promise((resolve, _reject) => {
+    return new Promise((resolve) => {
       type Options = keyof typeof ArgvOptionsEnum;
 
       Object.keys(ArgvOptionsEnum).forEach((argvOptionKey) => {

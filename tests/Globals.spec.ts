@@ -97,5 +97,13 @@ describe('Globals', () => {
       Globals.loadArgv();
       expect(Globals.CONFIG_PATH).toEqual('foo/bar.json');
     })
+
+    it('should not change config path when no matching argv option exists', () => {
+      Globals.CONFIG_PATH = 'bar/foo.json';
+      process.argv = ['--unknown', 'foo/bar.json'];
+
+      Globals.loadArgv();
+      expect(Globals.CONFIG_PATH).toEqual('bar/foo.json');
+    })
   })
 })
