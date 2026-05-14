@@ -122,9 +122,9 @@ gcov2lcov -infile coverage.out -outfile coverage.info
 Insert any of these keys anywhere in your README. They will be replaced with live badge images:
 
  * $coverage$
- * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$statements$)
- * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$branches$)
- * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$functions$)
+ * $statements$
+ * $branches$
+ * $functions$
  * $lines$
 
 _The surrounding dollar signs are required._
