@@ -136,8 +136,8 @@ async function run() {
         logInfo('\n\nBadges successfully created');
         if (commit) {
             const readmePath = Globals_1.Globals.BASE_README_PATH;
-            (0, child_process_1.execFileSync)('git', ['config', 'user.name', 'github-actions[bot]']);
-            (0, child_process_1.execFileSync)('git', ['config', 'user.email', 'github-actions[bot]@users.noreply.github.com']);
+            (0, child_process_1.execFileSync)('git', ['config', '--local', 'user.name', 'github-actions[bot]']);
+            (0, child_process_1.execFileSync)('git', ['config', '--local', 'user.email', 'github-actions[bot]@users.noreply.github.com']);
             (0, child_process_1.execFileSync)('git', ['add', readmePath]);
             try {
                 (0, child_process_1.execFileSync)('git', ['diff', '--cached', '--quiet']);

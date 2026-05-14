@@ -66,8 +66,8 @@ async function run(): Promise<void> {
 
     if (commit) {
       const readmePath = Globals.BASE_README_PATH;
-      execFileSync('git', ['config', 'user.name', 'github-actions[bot]']);
-      execFileSync('git', ['config', 'user.email', 'github-actions[bot]@users.noreply.github.com']);
+      execFileSync('git', ['config', '--local', 'user.name', 'github-actions[bot]']);
+      execFileSync('git', ['config', '--local', 'user.email', 'github-actions[bot]@users.noreply.github.com']);
       execFileSync('git', ['add', readmePath]);
       try {
         // exits 0 if no staged changes, exits 1 if there are staged changes

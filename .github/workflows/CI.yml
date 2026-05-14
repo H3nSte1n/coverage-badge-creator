@@ -21,3 +21,7 @@ jobs:
         run: npm run test
       - name: update coverage badge
         run: npm run coverage:badge
+      - name: Build action bundle
+        run: npm run build:action
+      - name: Verify dist/index.js is up to date
+        run: git diff --exit-code dist/index.js
