@@ -1,5 +1,6 @@
 import { DependencyOptionsInterface } from './interfaces/DependencyOptionsInterface';
 import { ArgvOptionsEnum } from './enums/ArgvOptionsEnum';
+import { FormatEnum } from './enums/FormatEnum';
 import path from 'path';
 
 export class Globals {
@@ -11,6 +12,7 @@ export class Globals {
   static BADGE_BASE_URL_PATTERN = '\\!\\[]\\(https:\\/\\/img\\.shields\\.io\\/badge\\/.*prefix=&PATTERN&\\)';
   static BASE_README_PATH = './README.md';
   static BADGES = {};
+  static FORMAT: FormatEnum | undefined = undefined;
 
   private constructor() {
     if (!Globals.instance) {
@@ -27,6 +29,7 @@ export class Globals {
     this.BASE_README_PATH = path.isAbsolute(readmePath) ? readmePath : path.resolve(process.cwd(), readmePath);
 
     this.BADGES = config?.badges || this.BADGES;
+    this.FORMAT = config?.format ?? this.FORMAT;
   }
 
   static loadArgv(): Promise<void> {

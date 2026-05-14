@@ -3,6 +3,7 @@ import { CoverageInterface, CoverageColumnInterface } from '../interfaces/Covera
 import { ColorValidation } from '../validations/ColorValidation';
 import { FileUtils } from '../utils/FileUtils';
 import { Globals } from '../Globals';
+import { ParserFactory } from '../parsers/ParserFactory';
 
 export class Coverage {
   private static medianCov: number;
@@ -11,7 +12,8 @@ export class Coverage {
 
   static init() {
     this.fileBody = FileUtils.readFile(Globals.DEFAULT_COV_PATH);
-    this.CoverageJSON = FileUtils.parseFile<CoverageInterface>(this.fileBody);
+    const parser = ParserFactory.getParser(Globals.FORMAT);
+    this.CoverageJSON = parser.parse(this.fileBody);
     this.medianCov = 0;
     return this;
   }

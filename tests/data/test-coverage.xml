@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<coverage line-rate="0.91" branch-rate="0.84" lines-covered="73" lines-valid="80" branches-covered="42" branches-valid="50" complexity="0" version="7.3.0" timestamp="1700000000">
+  <packages>
+    <package name="src" line-rate="0.91" branch-rate="0.84" complexity="0">
+      <classes>
+        <class name="CoverageWorker.ts" filename="src/workers/CoverageWorker.ts" line-rate="0.9" branch-rate="0.8" complexity="0">
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>

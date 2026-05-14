@@ -11,24 +11,31 @@
 ![Maintenance][maintained-shield]
 <br><br>
 
+Coverage Badge Creator reads your test coverage report and inserts live badges into your README — for any language, via GitHub Action or npm.
+
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#quick-start">Quick Start</a></li>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#step-1-produce-a-coverage-report">Step 1: Produce a coverage report</a></li>
+        <li><a href="#step-2-add-placeholders-to-your-readme">Step 2: Add placeholders to your README</a></li>
+        <li><a href="#step-3a-run-via-github-action">Step 3a: Run via GitHub Action</a></li>
+        <li><a href="#step-3b-run-via-npm-script-js-projects">Step 3b: Run via npm script</a></li>
+      </ul>
     </li>
-    <li>
-      <a href="#installation">Installation</a>
-    </li>
-    <li><a href="#usage">Usage</a></li>
     <li>
       <a href="#config">Config</a>
       <ul>
+        <li><a href="#coverage-report-format">Coverage report format</a></li>
         <li><a href="#coverage-file-path">Coverage file path</a></li>
         <li><a href="#badges">Badges</a></li>
         <li><a href="#extended">Extended</a></li>
       </ul>
     </li>
+    <li><a href="#npm--yarn-installation">npm / yarn Installation</a></li>
     <li><a href="#requirements">Requirements</a></li>
     <li><a href="#built-with">Built With</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -39,95 +46,202 @@
 </details>
 
 
+## Quick Start
 
-## About The Project
-Coverage Badge Creator is a super easy to use tool for your project. It creates badges based on your test coverage and inserts them into the README. All without any third-party libraries or tools.
+**Via GitHub Action** — works for any language, no Node.js required:
+```yaml
+- uses: H3nSte1n/coverage-badge-creator@v2
+  with:
+    format: istanbul   # istanbul · lcov · cobertura · coverage-py
+    commit: true       # auto-commit the updated README
+```
 
-
-## Installation
-[`npm`](https://www.npmjs.com/package/coverage-badge-creator):
+**Via npm** — for JavaScript projects that want a local script:
 ```sh
 npm install --save-dev coverage-badge-creator
 ```
-[`yarn`](https://yarnpkg.com/en/package/coverage-badge-creator):
-```sh
-yarn add --dev coverage-badge-creator
+```json
+"scripts": {
+  "coverage:badge": "coverage-badge-creator"
+}
 ```
+
 
 ## Usage
 
-1. First you need to set up your test environment.   
+### Step 1: Produce a coverage report
 
-    * jest   
-    
-      > In jest config you need to add 'json-summary' to coverageReporters. https://jestjs.io/docs/en/configuration  
+Generate a coverage file in one of the supported formats:
 
-    * mocha
-      ```sh
-      {
-        "test": "nyc --reporter=json-summary mocha"
-      }
-      ```
-      
-      <br>
-2. Insert one of the following keys anywhere in your README. These will be replaced by the coverage-badge-creator with the appropriate badge.
+**JavaScript / TypeScript (Jest)**
+```sh
+# jest.config.js: add 'json-summary' to coverageReporters
+# output: coverage/coverage-summary.json  →  format: istanbul
+```
 
-    The following keys are available:
-     * $coverage$
-     * $statements$
-     * $branches$
-     * $functions$
-     * $lines$
- 
-    _important are also the surrounding dollar signs_  
-    
-    <br>
- 3. Now you can create the badges.
- 
-    Add the command to your package.json scripts block:
-    ```json
-    "scripts": {
-      "coverage:badge": "coverage-badge-creator",
-    }   
-    ```
-    
-    and run it from the CLI:
-    ```sh
-    npm run coverage:badge
-    ```
-    
+**JavaScript / TypeScript (Mocha + NYC)**
+```sh
+nyc --reporter=json-summary mocha
+# output: coverage/coverage-summary.json  →  format: istanbul
+```
+
+**Python**
+```sh
+# JSON (recommended)
+coverage run -m pytest && coverage json
+# output: coverage.json  →  format: coverage-py
+
+# XML / Cobertura
+coverage run -m pytest && coverage xml
+# output: coverage.xml  →  format: cobertura
+```
+
+**Go**
+```sh
+go test -coverprofile=coverage.out ./...
+gcov2lcov -infile coverage.out -outfile coverage.info
+# output: coverage.info  →  format: lcov
+```
+
+**Java (JaCoCo)**
+```sh
+# JaCoCo generates Cobertura XML via the cobertura report task
+# output: build/reports/cobertura.xml  →  format: cobertura
+```
+
+**Ruby**
+```sh
+# SimpleCov with lcov formatter
+# output: coverage/lcov/project.lcov  →  format: lcov
+```
+
+---
+
+### Step 2: Add placeholders to your README
+
+Insert any of these keys anywhere in your README. They will be replaced with live badge images:
+
+ * $coverage$
+ * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$statements$)
+ * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$branches$)
+ * ![](https://img.shields.io/badge/Coverage-90%25-.svg?prefix=$functions$)
+ * $lines$
+
+_The surrounding dollar signs are required._
+
+---
+
+### Step 3a: Run via GitHub Action
+
+Add a step after your test run. The action commits the updated README automatically when `commit: true`.
+
+**Python example**
+```yaml
+- run: coverage run -m pytest && coverage json
+- uses: H3nSte1n/coverage-badge-creator@v2
+  with:
+    format: coverage-py
+    coverage-file-path: ./coverage.json
+    commit: true
+```
+
+**Go example**
+```yaml
+- run: go test -coverprofile=coverage.out ./... && gcov2lcov -infile coverage.out -outfile coverage.info
+- uses: H3nSte1n/coverage-badge-creator@v2
+  with:
+    format: lcov
+    coverage-file-path: ./coverage.info
+    commit: true
+```
+
+**Java (JaCoCo) example**
+```yaml
+- run: ./gradlew test jacocoTestReport
+- uses: H3nSte1n/coverage-badge-creator@v2
+  with:
+    format: cobertura
+    coverage-file-path: ./build/reports/cobertura.xml
+    commit: true
+```
+
+**JavaScript / TypeScript example**
+```yaml
+- run: npm test
+- uses: H3nSte1n/coverage-badge-creator@v2
+  with:
+    format: istanbul
+    commit: true
+```
+
+**Action inputs**
+
+| Input | Description | Default |
+|---|---|---|
+| `format` | Coverage report format | `istanbul` |
+| `coverage-file-path` | Path to the coverage report | *(from `.badge-config`)* |
+| `readme-file-path` | Path to the README to update | `./README.md` |
+| `config-path` | Path to a `.badge-config` file | `./.badge-config` |
+| `commit` | Auto-commit the updated README | `false` |
+| `commit-message` | Commit message when `commit` is true | `chore: update coverage badges [skip ci]` |
+
+---
+
+### Step 3b: Run via npm script (JS projects)
+
+Add the command to your `package.json` and run it after your test step:
+
+```json
+"scripts": {
+  "coverage:badge": "coverage-badge-creator"
+}
+```
+```sh
+npm run coverage:badge
+```
+
 
 ## Config
-There are various ways to configure the badges according to your wishes. To do this, you only need to create a new file called **.badge-config**. Then you have the following options:   
 
-_For a simple example click [here](https://github.com/H3nSte1n/coverage-badge-creator/blob/main/.conversion-badge-config)._
+Create a `.badge-config` file in your project root to customise the tool's behaviour.
+
+_For a full example see [.conversion-badge-config](https://github.com/H3nSte1n/coverage-badge-creator/blob/main/.conversion-badge-config)._
+
+### coverage report format
+```json
+{
+  "format": "lcov"
+}
+```
+
+| Value | Coverage tool | Typical output file |
+|---|---|---|
+| `istanbul` (default) | Jest, NYC, Istanbul | `coverage/coverage-summary.json` |
+| `lcov` | Go, C/C++, Ruby, Python (with lcov reporter) | `coverage/lcov.info` |
+| `cobertura` | Java (JaCoCo), Python (`coverage xml`), .NET | `coverage.xml` |
+| `coverage-py` | Python (`coverage json`) | `coverage.json` |
 
 ### coverage file path
-```
+```json
 {
-  coverage_file_path: './coverage/json-summary.json'
+  "coverage_file_path": "./coverage/json-summary.json"
 }
 ```
 
 ### badges
+```json
+{
+  "badges": {
+    "coverage": {
+      "logo": "github",
+      "color": "blue"
+    }
+  }
+}
 ```
- {
-   badges: {
-     coverage: {
-      logo: 'foo'
-      color: 'bar'
-     }
-   }
- }
-```
-**Depending on your test tool, you will probably have the following badges available for configuration:**
- * coverage
- * statements
- * branches
- * functions
- * lines
- 
- **Options**
+**Available badge keys:** `coverage` · `statements` · `branches` · `functions` · `lines`
+
+**Options**
  * style  
  ![plastic][style-plastic] ![flat][style-flat] ![flat-square][style-flat-square] ![flat-for-the-badge][style-for-the-badge] ![social][style-social]
  * logo  
@@ -139,26 +253,42 @@ _For a simple example click [here](https://github.com/H3nSte1n/coverage-badge-cr
  * link  
   ![blue][link-github] ![green][link-medium] ![white][link-reddit]
  
- _For more information on all options, see -> ![](https://img.shields.io/badge/Shields.io-informational?style=for-the-badge&logo=Shields.io&logoColor=white&color=black&link=https://shields.io/)_
+ _For all options → ![](https://img.shields.io/badge/Shields.io-informational?style=for-the-badge&logo=Shields.io&logoColor=white&color=black&link=https://shields.io/)_
 
 ### Extended
-**In addition, you have further options in the cli.**
+**CLI options**
 
 * --config
-  > This allows you to change the path and name of the configuration file.
+  > Change the path and name of the configuration file.
 
   ```sh
   "scripts": {
-    "coverage:badge": "coverage-badge-creator --config './badge-coverage-config.json'",
+    "coverage:badge": "coverage-badge-creator --config './badge-coverage-config.json'"
   }
   ```
 
+
+## npm / yarn Installation
+
+> If you're using the GitHub Action, no local installation is needed.
+
+[`npm`](https://www.npmjs.com/package/coverage-badge-creator):
+```sh
+npm install --save-dev coverage-badge-creator
+```
+[`yarn`](https://yarnpkg.com/en/package/coverage-badge-creator):
+```sh
+yarn add --dev coverage-badge-creator
+```
+
+
 ## Requirements
-* Node > v10.0.0
+
+* **GitHub Action** — no local requirements; Node.js is provided by GitHub.
+* **npm / yarn** — Node.js > v10.0.0
 
 
 ## Built With
-This section lists all programming languages and main frameworks.
 * [Node](https://nodejs.org/en/)
 * [Typescript](https://www.typescriptlang.org/)
 * [Jest](https://jestjs.io/)
@@ -185,7 +315,6 @@ This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://
 ## Acknowledgements
 * [Img Shields](https://shields.io)
 * [README Template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md)
-
 
 
 

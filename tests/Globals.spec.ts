@@ -1,4 +1,5 @@
 import { Globals } from "../src/Globals"
+import { FormatEnum } from "../src/enums/FormatEnum";
 import path from 'path';
 
 describe('Globals', () => {
@@ -86,6 +87,28 @@ describe('Globals', () => {
       expect(Globals.BASE_README_PATH).toEqual(path.resolve(process.cwd(), '../../README.md'));
       expect(path.isAbsolute(Globals.DEFAULT_COV_PATH)).toBe(true);
       expect(path.isAbsolute(Globals.BASE_README_PATH)).toBe(true);
+    })
+
+    it('should set FORMAT from config when format is provided', () => {
+      Globals.init({ format: FormatEnum.LCOV });
+      expect(Globals.FORMAT).toEqual(FormatEnum.LCOV);
+    })
+
+    it('should leave FORMAT unchanged when format is not in config', () => {
+      Globals.FORMAT = undefined;
+      Globals.init({});
+      expect(Globals.FORMAT).toBeUndefined();
+    })
+
+    it('should set FORMAT for all supported format values', () => {
+      Globals.init({ format: FormatEnum.COBERTURA });
+      expect(Globals.FORMAT).toEqual(FormatEnum.COBERTURA);
+
+      Globals.init({ format: FormatEnum.COVERAGE_PY });
+      expect(Globals.FORMAT).toEqual(FormatEnum.COVERAGE_PY);
+
+      Globals.init({ format: FormatEnum.ISTANBUL });
+      expect(Globals.FORMAT).toEqual(FormatEnum.ISTANBUL);
     })
   })
 
