@@ -105,10 +105,10 @@ function setFailed(msg) {
     process.stderr.write(msg + '\n');
 }
 const FORMAT_MAP = {
-    'istanbul': FormatEnum_1.FormatEnum.ISTANBUL,
-    'jest': FormatEnum_1.FormatEnum.ISTANBUL,
-    'lcov': FormatEnum_1.FormatEnum.LCOV,
-    'cobertura': FormatEnum_1.FormatEnum.COBERTURA,
+    istanbul: FormatEnum_1.FormatEnum.ISTANBUL,
+    jest: FormatEnum_1.FormatEnum.ISTANBUL,
+    lcov: FormatEnum_1.FormatEnum.LCOV,
+    cobertura: FormatEnum_1.FormatEnum.COBERTURA,
     'coverage-py': FormatEnum_1.FormatEnum.COVERAGE_PY,
 };
 async function run() {

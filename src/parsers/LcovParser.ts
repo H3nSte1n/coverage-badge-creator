@@ -3,7 +3,12 @@ import { CoverageInterface } from '../interfaces/CoverageInterface';
 
 export class LcovParser implements CoverageParser {
   parse(fileContent: string): CoverageInterface {
-    let lf = 0, lh = 0, brf = 0, brh = 0, fnf = 0, fnh = 0;
+    let lf = 0,
+      lh = 0,
+      brf = 0,
+      brh = 0,
+      fnf = 0,
+      fnh = 0;
 
     for (const line of fileContent.split('\n')) {
       const colonIndex = line.indexOf(':');
@@ -26,10 +31,10 @@ export class LcovParser implements CoverageParser {
 
     return {
       total: {
-        lines:      { pct: linesPct },
+        lines: { pct: linesPct },
         statements: { pct: linesPct },
-        branches:   { pct: branchPct },
-        functions:  { pct: fnPct },
+        branches: { pct: branchPct },
+        functions: { pct: fnPct },
       },
     };
   }

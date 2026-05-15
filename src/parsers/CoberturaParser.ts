@@ -15,10 +15,10 @@ export class CoberturaParser implements CoverageParser {
 
     return {
       total: {
-        lines:      { pct: linesPct },
+        lines: { pct: linesPct },
         statements: { pct: linesPct },
-        branches:   { pct: branchPct },
-        functions:  { pct: linesPct },
+        branches: { pct: branchPct },
+        functions: { pct: linesPct },
       },
     };
   }

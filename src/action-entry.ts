@@ -27,10 +27,10 @@ function setFailed(msg: string): void {
 }
 
 const FORMAT_MAP: Record<string, FormatEnum> = {
-  'istanbul':    FormatEnum.ISTANBUL,
-  'jest':        FormatEnum.ISTANBUL,
-  'lcov':        FormatEnum.LCOV,
-  'cobertura':   FormatEnum.COBERTURA,
+  istanbul: FormatEnum.ISTANBUL,
+  jest: FormatEnum.ISTANBUL,
+  lcov: FormatEnum.LCOV,
+  cobertura: FormatEnum.COBERTURA,
   'coverage-py': FormatEnum.COVERAGE_PY,
 };
 
