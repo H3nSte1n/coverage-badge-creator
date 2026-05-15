@@ -90,7 +90,7 @@ const SetupValidation_1 = __nccwpck_require__(230);
 const Controller_1 = __nccwpck_require__(3);
 const FormatEnum_1 = __nccwpck_require__(202);
 function getInput(name) {
-    return (process.env[`INPUT_${name.replace(/[ -]/g, '_').toUpperCase()}`] ?? '').trim();
+    return (process.env[`INPUT_${name.replace(/ /g, '_').toUpperCase()}`] ?? '').trim();
 }
 function setOutput(name, value) {
     const outputFile = process.env['GITHUB_OUTPUT'];
