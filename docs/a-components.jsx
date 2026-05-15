@@ -154,8 +154,6 @@ function highlight(src, lang) {
     s = s.replace(/\b(true|false)\b/g, '<span class="tk-num">$1</span>');
   } else if (lang === 'sh' || lang === 'bash') {
     s = s.replace(/(^|\s)(#.*)$/gm, '$1<span class="tk-comment">$2</span>');
-    s = s.replace(/^(\s*)(npm|yarn|pnpm|npx|go|coverage|nyc|jest|pytest)\b/gm, '$1<span class="tk-cmd">$2</span>');
-    s = s.replace(/(--?[a-z][\w-]*)/g, '<span class="tk-flag">$1</span>');
   } else if (lang === 'md') {
     s = s.replace(/(\$[a-z]+\$)/g, '<span class="tk-key">$1</span>');
     s = s.replace(/(#{1,3}\s.*)/g, '<span class="tk-heading">$1</span>');
@@ -259,15 +257,6 @@ function Hero() {
           <a className="ghost-btn" href="#quickstart">
             See the quickstart →
           </a>
-        </div>
-        <div className="hero-meta">
-          <span>
-            <strong className="counter">{pct}%</strong> example coverage
-          </span>
-          <span className="dot">·</span>
-          <span>4 report formats</span>
-          <span className="dot">·</span>
-          <span>0 deps</span>
         </div>
       </div>
 
@@ -466,15 +455,16 @@ function Step({ n, title, children }) {
 
 const LANG_SETUP = [
   {
-    label: 'Python',
+    label: 'Python · JSON',
     format: 'coverage-py',
-    code: `# generate JSON (recommended)
-coverage run -m pytest && coverage json
-# → coverage.json    →  format: coverage-py
-
-# OR XML / Cobertura
-coverage run -m pytest && coverage xml
-# → coverage.xml     →  format: cobertura`,
+    code: `coverage run -m pytest && coverage json
+# → coverage.json   →  type: coverage-py`,
+  },
+  {
+    label: 'Python · XML',
+    format: 'cobertura',
+    code: `coverage run -m pytest && coverage xml
+# → coverage.xml    →  type: cobertura`,
   },
   {
     label: 'JS · Jest',
@@ -526,7 +516,7 @@ function Languages() {
           {LANG_SETUP.map((l, i) => (
             <button key={l.label} className={`lang-tab ${i === idx ? 'on' : ''}`} onClick={() => setIdx(i)}>
               <span className="lang-tab-name">{l.label}</span>
-              <span className="lang-tab-fmt">format · {l.format}</span>
+              <span className="lang-tab-fmt">type · {l.format}</span>
             </button>
           ))}
         </div>
@@ -645,6 +635,15 @@ function ActionRef() {
     coverage-file-path: ./build/reports/cobertura.xml
     commit: true`,
           },
+          {
+            label: 'JS / TS example',
+            lang: 'yaml',
+            code: `- run: npm test
+- uses: H3nSte1n/coverage-badge-creator@v2
+  with:
+    format: istanbul
+    commit: true`,
+          },
         ]}
       />
     </Section>
@@ -665,24 +664,79 @@ function ActionRow({ input, desc, def }) {
 
 // ───────────────────────── Playground ─────────────────────────
 
-const PLAYGROUND_COLORS = ['#83A603', '#4c1', '#dfb317', '#fe7d37', '#e05d44', '#007ec6', '#9f9f9f', '#111'];
-const PLAYGROUND_STYLES = ['flat', 'flat-square', 'plastic', 'for-the-badge', 'social'];
+const PLAYGROUND_STYLES = ['flat', 'flat-square', 'plastic', 'for-the-badge'];
+
+function hslToHex(h) {
+  const s = 0.75, l = 0.45;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n) => {
+    const k = (n + h / 30) % 12;
+    const v = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * v).toString(16).padStart(2, '0');
+  };
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+function HueReel({ color, onChange }) {
+  const ref = useRef(null);
+  const pick = (e) => {
+    const rect = ref.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    onChange(hslToHex(Math.round(x * 360)));
+  };
+  return (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+      <div
+        ref={ref}
+        onClick={pick}
+        style={{
+          flex: 1,
+          height: 26,
+          borderRadius: 999,
+          background: 'linear-gradient(to right,hsl(0,75%,45%),hsl(30,75%,45%),hsl(60,75%,45%),hsl(90,75%,45%),hsl(120,75%,45%),hsl(150,75%,45%),hsl(180,75%,45%),hsl(210,75%,45%),hsl(240,75%,45%),hsl(270,75%,45%),hsl(300,75%,45%),hsl(330,75%,45%),hsl(360,75%,45%))',
+          cursor: 'crosshair',
+          border: '1px solid var(--rule)',
+        }}
+        aria-label="Hue picker"
+      />
+      <input
+        type="color"
+        value={color}
+        onChange={(e) => onChange(e.target.value)}
+        style={{ width: 26, height: 26, borderRadius: '50%', border: '1px solid var(--rule)', padding: 0, cursor: 'pointer', background: 'none' }}
+        aria-label="Exact color"
+      />
+    </div>
+  );
+}
 
 function Playground() {
   const [label, setLabel] = useState('coverage');
   const [value, setValue] = useState('98%');
   const [color, setColor] = useState('#83A603');
   const [style, setStyle] = useState('flat');
+  const [more, setMore] = useState(false);
+  const [logo, setLogo] = useState('');
+  const [logoColor, setLogoColor] = useState('');
+  const [link, setLink] = useState('');
+
+  const extraConfig = [
+    logo && `      "logo": "${logo}"`,
+    logoColor && `      "logoColor": "${logoColor}"`,
+    link && `      "link": "${link}"`,
+  ].filter(Boolean).join(',\n');
 
   const config = `{
   "badges": {
     "${label}": {
       "style": "${style}",
-      "color": "${color.replace('#', '')}"
+      "color": "${color.replace('#', '')}"${extraConfig ? ',\n' + extraConfig : ''}
     }
   }
 }`;
-  const md = `![${label}](https://img.shields.io/badge/${encodeURIComponent(label)}-${encodeURIComponent(value)}-${color.replace('#', '')}.svg?style=${style})`;
+
+  const mdParams = ['style=' + style, logo && 'logo=' + logo, logoColor && 'logoColor=' + logoColor, link && 'link=' + encodeURIComponent(link)].filter(Boolean).join('&');
+  const md = `![${label}](https://img.shields.io/badge/${encodeURIComponent(label)}-${encodeURIComponent(value)}-${color.replace('#', '')}.svg?${mdParams})`;
 
   return (
     <Section id="playground" eyebrow="Playground" title="Try every knob. No install needed.">
@@ -708,19 +762,30 @@ function Playground() {
           </div>
           <div className="field">
             <span>Color</span>
-            <div className="swatches">
-              {PLAYGROUND_COLORS.map((c) => (
-                <button
-                  key={c}
-                  className={`swatch ${color === c ? 'on' : ''}`}
-                  style={{ background: c }}
-                  onClick={() => setColor(c)}
-                  aria-label={c}
-                />
-              ))}
-              <input type="color" value={color} onChange={(e) => setColor(e.target.value)} className="swatch-picker" />
-            </div>
+            <HueReel color={color} onChange={setColor} />
           </div>
+          <button
+            onClick={() => setMore(!more)}
+            style={{ background: 'none', border: 0, padding: '4px 0', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--accent)', cursor: 'pointer', textAlign: 'left', letterSpacing: '.04em' }}
+          >
+            {more ? '▲ fewer options' : '▼ more options'}
+          </button>
+          {more && (
+            <>
+              <label className="field">
+                <span>Logo</span>
+                <input value={logo} onChange={(e) => setLogo(e.target.value)} placeholder="jest, python, github…" maxLength={32} />
+              </label>
+              <label className="field">
+                <span>Logo color</span>
+                <input value={logoColor} onChange={(e) => setLogoColor(e.target.value)} placeholder="white, #fff…" maxLength={16} />
+              </label>
+              <label className="field">
+                <span>Link</span>
+                <input value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://…" maxLength={120} />
+              </label>
+            </>
+          )}
         </div>
 
         <div className="play-preview">
@@ -755,7 +820,7 @@ function Config() {
       </p>
 
       <div className="config-grid">
-        <ConfigCard title="Coverage report format" id="config-format">
+        <ConfigCard title="Report type" id="config-format">
           <CodeBlock
             language="json"
             tabs={[

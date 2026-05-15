@@ -708,11 +708,8 @@ html.dark .callout code { background: rgba(255,255,255,.08); }
   transition: background .15s, color .15s;
 }
 .seg button.on { background: var(--accent); color: white; }
-.swatches { display: flex; flex-wrap: wrap; gap: 6px; }
-.swatch { width: 26px; height: 26px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; padding: 0; transition: transform .15s, border-color .15s; }
-.swatch:hover { transform: scale(1.1); }
-.swatch.on { border-color: var(--ink); }
-.swatch-picker { width: 26px; height: 26px; border-radius: 50%; border: 1px dashed var(--rule); background: transparent; cursor: pointer; padding: 0; }
+/* native color input inside hue reel */
+input[type="color"] { appearance: none; -webkit-appearance: none; cursor: pointer; }
 .play-preview { display: flex; flex-direction: column; }
 .play-stage {
   flex: 0 0 auto;
@@ -728,6 +725,9 @@ html.dark .callout code { background: rgba(255,255,255,.08); }
 .play-snippets .codeblock { border-radius: 0; }
 .play-snippets .codeblock + .codeblock { border-top: 1px solid color-mix(in oklab, var(--code-bg), white 8%); }
 
+/* Fix: broad `code` selectors (step-body, section-lede) must not bleed into codeblocks */
+.codeblock code { background: transparent; border: 0; padding: 0; border-radius: 0; }
+
 /* ─── Config grid ──────────────────────────────────────── */
 .config-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 18px; }
 .config-card {
@@ -737,6 +737,7 @@ html.dark .callout code { background: rgba(255,255,255,.08); }
   padding: 24px;
   display: grid;
   gap: 14px;
+  align-content: start;
 }
 .config-card h3 { font-family: var(--font-display); font-weight: 400; font-size: 24px; margin: 0; }
 .cli-table { width: 100%; border-collapse: collapse; font-size: 14px; }
