@@ -9,7 +9,7 @@ import { DependencyOptionsInterface } from './interfaces/DependencyOptionsInterf
 
 // Minimal GitHub Actions protocol helpers — avoids @actions/core dependency entirely
 function getInput(name: string): string {
-  return (process.env[`INPUT_${name.toUpperCase().replace(/-/g, '_')}`] ?? '').trim();
+  return (process.env[`INPUT_${name.replace(/ /g, '_').toUpperCase()}`] ?? '').trim();
 }
 
 function setOutput(name: string, value: string): void {
