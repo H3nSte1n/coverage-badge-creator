@@ -1,0 +1,40 @@
+name: 'Coverage Badge Creator'
+description: 'Generate coverage badges from your test coverage report and update README.md'
+author: 'Henry Steinhauer'
+
+branding:
+  icon: 'award'
+  color: 'green'
+
+inputs:
+  config-path:
+    description: 'Path to the .badge-config file'
+    required: false
+    default: './.badge-config'
+  coverage-file-path:
+    description: 'Path to the coverage report file'
+    required: false
+  readme-file-path:
+    description: 'Path to the README.md to update'
+    required: false
+    default: './README.md'
+  format:
+    description: 'Coverage report format: istanbul (default), jest, lcov, cobertura, coverage-py'
+    required: false
+    default: 'istanbul'
+  commit:
+    description: 'Auto-commit the updated README back to the repository'
+    required: false
+    default: 'false'
+  commit-message:
+    description: 'Commit message (only used when commit is true)'
+    required: false
+    default: 'chore: update coverage badges [skip ci]'
+
+outputs:
+  updated:
+    description: 'Whether the README was updated'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

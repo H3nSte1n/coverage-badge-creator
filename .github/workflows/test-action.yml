@@ -1,0 +1,135 @@
+name: Test Action (Integration)
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+
+  # Istanbul (Jest / NYC / Istanbul)
+  test-istanbul:
+    name: 'istanbul — Jest / NYC'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies and generate coverage
+        run: npm ci && npm test
+
+      - name: Copy test README template
+        run: cp tests/data/test-readme-template.md /tmp/test-readme.md
+
+      - name: Run action
+        uses: ./
+        with:
+          format: istanbul
+          coverage-file-path: ./coverage/coverage-summary.json
+          readme-file-path: /tmp/test-readme.md
+          commit: 'false'
+
+      - name: Verify all five badges were inserted
+        run: |
+          echo "--- README after action ---"
+          cat /tmp/test-readme.md
+          echo "--- end README ---"
+          grep -Fq "prefix=\$coverage\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$statements\$" /tmp/test-readme.md
+          grep -Fq "prefix=\$branches\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$functions\$"  /tmp/test-readme.md
+          grep -Fq "prefix=\$lines\$"      /tmp/test-readme.md
+          echo "All badges inserted (istanbul)"
+
+  # lcov (Go / Ruby / C/C++ / Python with lcov reporter)
+  test-lcov:
+    name: 'lcov — Go / Ruby / C++'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy test README template
+        run: cp tests/data/test-readme-template.md /tmp/test-readme.md
+
+      - name: Run action
+        uses: ./
+        with:
+          format: lcov
+          coverage-file-path: ./tests/data/test-coverage.info
+          readme-file-path: /tmp/test-readme.md
+          commit: 'false'
+
+      - name: Verify all five badges were inserted
+        run: |
+          echo "--- README after action ---"
+          cat /tmp/test-readme.md
+          echo "--- end README ---"
+          grep -Fq "prefix=\$coverage\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$statements\$" /tmp/test-readme.md
+          grep -Fq "prefix=\$branches\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$functions\$"  /tmp/test-readme.md
+          grep -Fq "prefix=\$lines\$"      /tmp/test-readme.md
+          echo "All badges inserted (lcov)"
+
+  # Cobertura XML (Java JaCoCo / Python coverage xml / .NET)
+  test-cobertura:
+    name: 'cobertura — Java / Python / .NET'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy test README template
+        run: cp tests/data/test-readme-template.md /tmp/test-readme.md
+
+      - name: Run action
+        uses: ./
+        with:
+          format: cobertura
+          coverage-file-path: ./tests/data/test-coverage.xml
+          readme-file-path: /tmp/test-readme.md
+          commit: 'false'
+
+      - name: Verify all five badges were inserted
+        run: |
+          echo "--- README after action ---"
+          cat /tmp/test-readme.md
+          echo "--- end README ---"
+          grep -Fq "prefix=\$coverage\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$statements\$" /tmp/test-readme.md
+          grep -Fq "prefix=\$branches\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$functions\$"  /tmp/test-readme.md
+          grep -Fq "prefix=\$lines\$"      /tmp/test-readme.md
+          echo "All badges inserted (cobertura)"
+
+  # coverage.py JSON (Python)
+  test-coverage-py:
+    name: 'coverage-py — Python'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy test README template
+        run: cp tests/data/test-readme-template.md /tmp/test-readme.md
+
+      - name: Run action
+        uses: ./
+        with:
+          format: coverage-py
+          coverage-file-path: ./tests/data/test-coverage-py.json
+          readme-file-path: /tmp/test-readme.md
+          commit: 'false'
+
+      - name: Verify all five badges were inserted
+        run: |
+          echo "--- README after action ---"
+          cat /tmp/test-readme.md
+          echo "--- end README ---"
+          grep -Fq "prefix=\$coverage\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$statements\$" /tmp/test-readme.md
+          grep -Fq "prefix=\$branches\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$functions\$"  /tmp/test-readme.md
+          grep -Fq "prefix=\$lines\$"      /tmp/test-readme.md
+          echo "All badges inserted (coverage-py)"

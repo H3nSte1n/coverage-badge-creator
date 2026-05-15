@@ -1,3 +1,10 @@
 node_modules
 coverage
 /lib
+dist/*.d.ts
+dist/enums/
+dist/interfaces/
+dist/parsers/
+dist/utils/
+dist/validations/
+dist/workers/

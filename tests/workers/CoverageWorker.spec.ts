@@ -3,6 +3,7 @@ import { FileUtils } from '../../src/utils/FileUtils';
 import { ColorValidation } from '../../src/validations/ColorValidation';
 import { BadgeStatsInterface } from '../../src/interfaces/BadgeStatsInterface';
 import { Globals } from '../../src/Globals';
+import { ParserFactory } from '../../src/parsers/ParserFactory';
 
 describe('Coverage', () => {
   beforeAll(() => {
@@ -21,6 +22,13 @@ describe('Coverage', () => {
       expect(readFileSpy).toHaveBeenCalled();
       expect(parseFileSpy).toHaveBeenCalled();
     })
+
+    it('should call ParserFactory.getParser with Globals.FORMAT', () => {
+      const getParserSpy = jest.spyOn(ParserFactory, 'getParser');
+      Coverage.init();
+      expect(getParserSpy).toHaveBeenCalledWith(Globals.FORMAT);
+    })
+
     it('should return class instance', () => {
       const result = Coverage.init();
       expect(result).toBe(Coverage);

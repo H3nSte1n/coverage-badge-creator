@@ -1,6 +1,7 @@
-import { DependencyOptionsInterface } from './interfaces/DependencyOptionsInterface';
-import { ArgvOptionsEnum } from './enums/ArgvOptionsEnum';
 import path from 'path';
+import { ArgvOptionsEnum } from './enums/ArgvOptionsEnum';
+import { FormatEnum } from './enums/FormatEnum';
+import { DependencyOptionsInterface } from './interfaces/DependencyOptionsInterface';
 
 export class Globals {
   private static instance: Globals;
@@ -8,9 +9,10 @@ export class Globals {
   static DEFAULT_COV_PATH = './coverage/coverage-summary.json';
   static COVERAGE_CATEGORIES = ['statements', 'branches', 'functions', 'lines'];
   static BADGE_BASE_URL = '![](https://img.shields.io/badge/';
-  static BADGE_BASE_URL_PATTERN = '\\!\\[]\\(https:\\/\\/img\\.shields\\.io\\/badge\\/.*prefix=&PATTERN&\\)';
+  static BADGE_BASE_URL_PATTERN = '\\!\\[]\\(https:\\/\\/img\\.shields\\.io\\/badge\\/[^)]*prefix=&PATTERN&\\)';
   static BASE_README_PATH = './README.md';
   static BADGES = {};
+  static FORMAT: FormatEnum | undefined = undefined;
 
   private constructor() {
     if (!Globals.instance) {
@@ -27,6 +29,7 @@ export class Globals {
     this.BASE_README_PATH = path.isAbsolute(readmePath) ? readmePath : path.resolve(process.cwd(), readmePath);
 
     this.BADGES = config?.badges || this.BADGES;
+    this.FORMAT = config?.format ?? this.FORMAT;
   }
 
   static loadArgv(): Promise<void> {

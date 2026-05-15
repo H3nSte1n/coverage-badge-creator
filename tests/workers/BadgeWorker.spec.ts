@@ -28,7 +28,7 @@ describe('Badge', () => {
         coverage: 70,
         color: 'green'
       }
-      const testString = `Coverage-${statsObj.coverage}${encodeURI('%')}-${statsObj.color}.svg`;
+      const testString = `Statements-${statsObj.coverage}${encodeURI('%')}-${statsObj.color}.svg`;
       const result = Badge.create({}, statsObj, "statements")
       expect(result).toMatch(testString);
     })

@@ -1,23 +1,34 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         node-version: [20.x, 22.x, 24.x]
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Install dependencies
         run: npm ci
+
       - name: Run tests
-        run: npm run test
-      - name: update coverage badge
-        run: npm run coverage:badge
+        run: npm test
+
+      # Only verify the action bundle on one Node version — ncc output can
+      # differ between Node versions and the committed dist was built on 20.x
+      - name: Build action bundle and verify dist is up to date
+        if: matrix.node-version == '20.x'
+        run: npm run build:action && git diff --exit-code dist/index.js
