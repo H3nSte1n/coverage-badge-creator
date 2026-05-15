@@ -858,8 +858,9 @@ input[type="color"] { appearance: none; -webkit-appearance: none; cursor: pointe
   .lang-tab { flex: 0 0 auto; border-bottom: 0; border-right: 1px solid var(--rule); padding: 10px 14px; }
   .lang-tab.on { background: var(--accent-soft); }
   .lang-meta { grid-template-columns: 1fr; gap: 8px; }
-  .action-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 14px; font-size: 13px; }
+  .action-row { grid-template-columns: 1fr; gap: 2px; padding: 12px 14px; font-size: 13px; }
   .action-head { display: none; }
+  .action-row > span:nth-child(3)::before { content: 'Default: '; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); display: block; margin-top: 4px; }
   .format-row { grid-template-columns: 1fr; gap: 4px; padding: 10px 12px; }
   .format-head { display: none; }
 

@@ -1184,8 +1184,7 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div className="footer-fine">Shipped from the README, with care.</div>
-      </div>
+        </div>
     </footer>
   );
 }
