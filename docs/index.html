@@ -695,20 +695,21 @@ html.dark .callout code { background: rgba(255,255,255,.08); }
   transition: border-color .15s, box-shadow .15s;
 }
 .field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
-.seg { display: flex; flex-wrap: wrap; gap: 4px; padding: 3px; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius-sm); }
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 3px; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius-sm); }
 .seg button {
-  flex: 1 1 0;
-  min-width: 0;
   text-align: center;
   background: transparent;
   border: 0;
   border-radius: 5px;
-  padding: 6px 8px;
+  padding: 7px 6px;
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--ink-soft);
   cursor: pointer;
   transition: background .15s, color .15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .seg button.on { background: var(--accent); color: white; }
 /* native color input inside hue reel */

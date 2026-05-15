@@ -471,6 +471,7 @@ const LANG_SETUP = [
   {
     label: 'JS · Jest',
     format: 'istanbul',
+    npm: true,
     code: `# jest.config.js → add 'json-summary' to coverageReporters
 jest --coverage
 # → coverage/coverage-summary.json   →  type: istanbul`,
@@ -478,6 +479,7 @@ jest --coverage
   {
     label: 'JS · Mocha',
     format: 'istanbul',
+    npm: true,
     code: `nyc --reporter=json-summary mocha
 # → coverage/coverage-summary.json   →  type: istanbul`,
   },
@@ -485,9 +487,9 @@ jest --coverage
     label: 'Go',
     format: 'lcov',
     code: `go test -coverprofile=coverage.out ./...
-# Go outputs its own format — convert to lcov first:
 gcov2lcov -infile coverage.out -outfile coverage.info
 # → coverage.info   →  type: lcov`,
+    note: "Go's native .out format isn't a standard format. gcov2lcov is a small CLI tool that converts it to lcov, which is what this tool reads. Install it with: go install github.com/jandelgado/gcov2lcov@latest",
   },
   {
     label: 'Java (JaCoCo)',
@@ -524,6 +526,12 @@ function Languages() {
         </div>
         <div className="lang-body">
           <CodeBlock language="sh" tabs={[{ label: cur.label, code: cur.code }]} />
+          {cur.note && (
+            <div className="callout" style={{ fontSize: 13 }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginTop:1}}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span>{cur.note}</span>
+            </div>
+          )}
           <div className="lang-meta">
             <div>
               <span className="lang-meta-k">Coverage format</span>
@@ -532,7 +540,7 @@ function Languages() {
             <div>
               <span className="lang-meta-k">Run via</span>
               <span className="lang-meta-v">
-                GitHub Action <small className="muted">or npm</small>
+                GitHub Action{cur.npm && <small className="muted"> or npm</small>}
               </span>
             </div>
           </div>
@@ -1055,8 +1063,8 @@ const FAQS = [
     a: 'Set them per badge in .badge-config. Action inputs win over config values, so you can override per-workflow.',
   },
   {
-    q: 'Can I use it for multiple coverage tools at once?',
-    a: 'Pick the format that matches your tool. Mixed setups can convert into one of the four supported formats first (e.g. gcov2lcov).',
+    q: 'My language is not in the list — can I still use it?',
+    a: 'Yes, as long as your test runner can output one of the four supported report types (istanbul, lcov, cobertura, or coverage-py). Many languages have converters — for example, Go uses gcov2lcov to turn its native .out file into lcov format. Check if your tool has a reporter plugin for one of these formats.',
   },
 ];
 
