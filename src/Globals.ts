@@ -1,7 +1,7 @@
-import { DependencyOptionsInterface } from './interfaces/DependencyOptionsInterface';
+import path from 'path';
 import { ArgvOptionsEnum } from './enums/ArgvOptionsEnum';
 import { FormatEnum } from './enums/FormatEnum';
-import path from 'path';
+import { DependencyOptionsInterface } from './interfaces/DependencyOptionsInterface';
 
 export class Globals {
   private static instance: Globals;
@@ -9,7 +9,7 @@ export class Globals {
   static DEFAULT_COV_PATH = './coverage/coverage-summary.json';
   static COVERAGE_CATEGORIES = ['statements', 'branches', 'functions', 'lines'];
   static BADGE_BASE_URL = '![](https://img.shields.io/badge/';
-  static BADGE_BASE_URL_PATTERN = '\\!\\[]\\(https:\\/\\/img\\.shields\\.io\\/badge\\/.*prefix=&PATTERN&\\)';
+  static BADGE_BASE_URL_PATTERN = '\\!\\[]\\(https:\\/\\/img\\.shields\\.io\\/badge\\/[^)]*prefix=&PATTERN&\\)';
   static BASE_README_PATH = './README.md';
   static BADGES = {};
   static FORMAT: FormatEnum | undefined = undefined;
