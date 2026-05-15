@@ -1,14 +1,9 @@
 <h1>Coverage Badge Creator</h1>
 <br>
 
-![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$)
-![CI][ci]
-![Build][build]
-![Code-Style][code-style]
+![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$) ![CI][ci] ![Build][build] ![Code-Style][code-style]
 
-[![MIT License][license-shield]][license-url]
-[![Release][release-shield]][release-url]
-![Maintenance][maintained-shield]
+[![MIT License][license-shield]][license-url] [![Release][release-shield]][release-url] ![Maintenance][maintained-shield]
 <br><br>
 
 Coverage Badge Creator reads your test coverage report and inserts live badges into your README — for any language, via GitHub Action or npm.
