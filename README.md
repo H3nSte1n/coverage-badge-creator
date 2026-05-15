@@ -2,20 +2,10 @@
 <br>
 
 <p align="center">
-  <img alt="Coverage" src="https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$" />
-  &nbsp;
-  <a href="https://github.com/H3nSte1n/coverage-badge-creator/actions/workflows/CI.yml"><img alt="CI" src="https://github.com/H3nSte1n/coverage-badge-creator/workflows/CI/badge.svg?style=flat" /></a>
-  &nbsp;
-  <a href="https://github.com/H3nSte1n/coverage-badge-creator/actions/workflows/Build.yml"><img alt="Build" src="https://github.com/H3nSte1n/coverage-badge-creator/workflows/Build/badge.svg?style=flat" /></a>
-  &nbsp;
-  <a href="https://github.com/H3nSte1n/coverage-badge-creator/actions/workflows/Code-Style.yml"><img alt="Code Style" src="https://github.com/H3nSte1n/coverage-badge-creator/workflows/Code-Style/badge.svg?style=flat" /></a>
+  <img alt="Coverage" src="https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$" /> &nbsp; <a href="https://github.com/H3nSte1n/coverage-badge-creator/actions/workflows/CI.yml"><img alt="CI" src="https://github.com/H3nSte1n/coverage-badge-creator/workflows/CI/badge.svg?style=flat" /></a> &nbsp; <a href="https://github.com/H3nSte1n/coverage-badge-creator/actions/workflows/Build.yml"><img alt="Build" src="https://github.com/H3nSte1n/coverage-badge-creator/workflows/Build/badge.svg?style=flat" /></a> &nbsp; <a href="https://github.com/H3nSte1n/coverage-badge-creator/actions/workflows/Code-Style.yml"><img alt="Code Style" src="https://github.com/H3nSte1n/coverage-badge-creator/workflows/Code-Style/badge.svg?style=flat" /></a>
 </p>
 <p align="center">
-  <a href="https://github.com/H3nSte1n/coverage-badge-creator/blob/master/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat" /></a>
-  &nbsp;
-  <a href="https://GitHub.com/H3nSte1n/coverage-badge-creator/releases/"><img alt="Release" src="https://img.shields.io/github/release/H3nSte1n/coverage-badge-creator.svg?style=flat" /></a>
-  &nbsp;
-  <img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat" />
+  <a href="https://github.com/H3nSte1n/coverage-badge-creator/blob/master/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat" /></a> &nbsp; <a href="https://GitHub.com/H3nSte1n/coverage-badge-creator/releases/"><img alt="Release" src="https://img.shields.io/github/release/H3nSte1n/coverage-badge-creator.svg?style=flat" /></a> &nbsp; <img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat" />
 </p>
 <br><br>
 
