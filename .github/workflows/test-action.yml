@@ -37,11 +37,11 @@ jobs:
           echo "--- README after action ---"
           cat /tmp/test-readme.md
           echo "--- end README ---"
-          grep -q "prefix=\$coverage\$"   /tmp/test-readme.md
-          grep -q "prefix=\$statements\$" /tmp/test-readme.md
-          grep -q "prefix=\$branches\$"   /tmp/test-readme.md
-          grep -q "prefix=\$functions\$"  /tmp/test-readme.md
-          grep -q "prefix=\$lines\$"      /tmp/test-readme.md
+          grep -Fq "prefix=\$coverage\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$statements\$" /tmp/test-readme.md
+          grep -Fq "prefix=\$branches\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$functions\$"  /tmp/test-readme.md
+          grep -Fq "prefix=\$lines\$"      /tmp/test-readme.md
           echo "All badges inserted (istanbul)"
 
   # lcov (Go / Ruby / C/C++ / Python with lcov reporter)
@@ -67,11 +67,11 @@ jobs:
           echo "--- README after action ---"
           cat /tmp/test-readme.md
           echo "--- end README ---"
-          grep -q "prefix=\$coverage\$"   /tmp/test-readme.md
-          grep -q "prefix=\$statements\$" /tmp/test-readme.md
-          grep -q "prefix=\$branches\$"   /tmp/test-readme.md
-          grep -q "prefix=\$functions\$"  /tmp/test-readme.md
-          grep -q "prefix=\$lines\$"      /tmp/test-readme.md
+          grep -Fq "prefix=\$coverage\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$statements\$" /tmp/test-readme.md
+          grep -Fq "prefix=\$branches\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$functions\$"  /tmp/test-readme.md
+          grep -Fq "prefix=\$lines\$"      /tmp/test-readme.md
           echo "All badges inserted (lcov)"
 
   # Cobertura XML (Java JaCoCo / Python coverage xml / .NET)
@@ -97,11 +97,11 @@ jobs:
           echo "--- README after action ---"
           cat /tmp/test-readme.md
           echo "--- end README ---"
-          grep -q "prefix=\$coverage\$"   /tmp/test-readme.md
-          grep -q "prefix=\$statements\$" /tmp/test-readme.md
-          grep -q "prefix=\$branches\$"   /tmp/test-readme.md
-          grep -q "prefix=\$functions\$"  /tmp/test-readme.md
-          grep -q "prefix=\$lines\$"      /tmp/test-readme.md
+          grep -Fq "prefix=\$coverage\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$statements\$" /tmp/test-readme.md
+          grep -Fq "prefix=\$branches\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$functions\$"  /tmp/test-readme.md
+          grep -Fq "prefix=\$lines\$"      /tmp/test-readme.md
           echo "All badges inserted (cobertura)"
 
   # coverage.py JSON (Python)
@@ -127,9 +127,9 @@ jobs:
           echo "--- README after action ---"
           cat /tmp/test-readme.md
           echo "--- end README ---"
-          grep -q "prefix=\$coverage\$"   /tmp/test-readme.md
-          grep -q "prefix=\$statements\$" /tmp/test-readme.md
-          grep -q "prefix=\$branches\$"   /tmp/test-readme.md
-          grep -q "prefix=\$functions\$"  /tmp/test-readme.md
-          grep -q "prefix=\$lines\$"      /tmp/test-readme.md
+          grep -Fq "prefix=\$coverage\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$statements\$" /tmp/test-readme.md
+          grep -Fq "prefix=\$branches\$"   /tmp/test-readme.md
+          grep -Fq "prefix=\$functions\$"  /tmp/test-readme.md
+          grep -Fq "prefix=\$lines\$"      /tmp/test-readme.md
           echo "All badges inserted (coverage-py)"
