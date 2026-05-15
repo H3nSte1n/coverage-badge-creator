@@ -3,8 +3,22 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>coverage-badge-creator · Docs Studio</title>
-<meta name="description" content="Coverage Badge Creator: a zero-dependency CLI that turns your test coverage into beautiful SVG badges committed straight into your README."/>
+<title>Coverage Badge Creator — Auto-generate README badges from test coverage</title>
+<meta name="description" content="Generate coverage badges for any language (Python, Go, Java, Ruby, JS) and insert them into your README automatically — via GitHub Action or npm CLI. Supports Istanbul, lcov, Cobertura, and coverage.py."/>
+
+<link rel="canonical" href="https://h3nste1n.github.io/coverage-badge-creator/"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://h3nste1n.github.io/coverage-badge-creator/"/>
+<meta property="og:title" content="Coverage Badge Creator — Auto-generate README badges from test coverage"/>
+<meta property="og:description" content="Drop a $coverage$ token in your README. Run as a GitHub Action (any language) or npm CLI (JS/TS). Supports Istanbul, lcov, Cobertura, and coverage.py formats."/>
+<meta property="og:site_name" content="coverage-badge-creator"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Coverage Badge Creator — Auto-generate README badges from test coverage"/>
+<meta name="twitter:description" content="Drop a $coverage$ token in your README. Run as a GitHub Action (any language) or npm CLI (JS/TS). Supports Istanbul, lcov, Cobertura, and coverage.py formats."/>
 
 <!-- AI-friendly structured data -->
 <script type="application/ld+json">
@@ -12,14 +26,18 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "coverage-badge-creator",
+  "url": "https://h3nste1n.github.io/coverage-badge-creator/",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Cross-platform (Node.js ≥ 20)",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "description": "A zero-dependency CLI that reads your test coverage JSON summary and writes themed SVG badges into your README using $coverage$ tokens.",
+  "description": "A zero-dependency GitHub Action and npm CLI that reads test coverage reports (Istanbul, lcov, Cobertura, coverage.py) and writes live SVG badges into your README using $coverage$ tokens. Works for Python, Go, Java, Ruby, JavaScript, TypeScript, .NET, and more.",
+  "keywords": ["coverage badge", "github action", "test coverage", "README badge", "shields.io", "istanbul", "lcov", "cobertura", "coverage.py", "javascript", "python", "go", "java"],
   "author": { "@type": "Person", "name": "Henry Steinhauer", "url": "https://github.com/H3nSte1n" },
+  "codeRepository": "https://github.com/H3nSte1n/coverage-badge-creator",
   "downloadUrl": "https://www.npmjs.com/package/coverage-badge-creator",
-  "softwareRequirements": "Node.js >= 20",
-  "license": "https://opensource.org/licenses/MIT"
+  "softwareRequirements": "Node.js >= 20 (npm mode only; GitHub Action has no local requirements)",
+  "license": "https://opensource.org/licenses/MIT",
+  "softwareVersion": "2.1.1"
 }
 </script>
 
@@ -880,6 +898,40 @@ html.dark .callout code { background: rgba(255,255,255,.08); }
 <div class="app">
   <div id="root"></div>
 </div>
+
+<!-- Crawler / noscript fallback — key content indexed even without JS execution -->
+<noscript>
+<main style="max-width:860px;margin:0 auto;padding:40px 24px;font-family:system-ui,sans-serif;line-height:1.6">
+  <h1>Coverage Badge Creator</h1>
+  <p>A zero-dependency <strong>GitHub Action</strong> and <strong>npm CLI</strong> that reads your test coverage report and inserts live SVG badges into your README automatically. Works for any language — Python, Go, Java, Ruby, JavaScript, TypeScript, .NET and more.</p>
+  <h2>How it works</h2>
+  <ol>
+    <li>Add a <code>$coverage$</code> token anywhere in your README.</li>
+    <li>Run your tests to produce a coverage report.</li>
+    <li>Run the Action (or npm script) — the token is replaced with a live badge.</li>
+  </ol>
+  <h2>Supported formats</h2>
+  <ul>
+    <li><strong>istanbul</strong> — Jest, NYC, Istanbul (default)</li>
+    <li><strong>lcov</strong> — Go, C/C++, Ruby, Python (lcov reporter)</li>
+    <li><strong>cobertura</strong> — Java (JaCoCo), Python (coverage xml), .NET</li>
+    <li><strong>coverage-py</strong> — Python (coverage json)</li>
+  </ul>
+  <h2>GitHub Action quickstart</h2>
+  <pre><code>- uses: H3nSte1n/coverage-badge-creator@v2
+  with:
+    format: istanbul
+    commit: true</code></pre>
+  <h2>npm quickstart</h2>
+  <pre><code>npm install --save-dev coverage-badge-creator</code></pre>
+  <h2>Links</h2>
+  <ul>
+    <li><a href="https://github.com/H3nSte1n/coverage-badge-creator">GitHub repository</a></li>
+    <li><a href="https://www.npmjs.com/package/coverage-badge-creator">npm package</a></li>
+    <li><a href="https://github.com/H3nSte1n/coverage-badge-creator/blob/main/LICENSE">MIT License</a></li>
+  </ul>
+</main>
+</noscript>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>

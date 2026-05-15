@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://h3nste1n.github.io/coverage-badge-creator/sitemap.xml
