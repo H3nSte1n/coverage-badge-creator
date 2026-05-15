@@ -1,9 +1,22 @@
 <h1>Coverage Badge Creator</h1>
 <br>
 
-![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$) ![CI][ci] ![Build][build] ![Code-Style][code-style]
-
-[![MIT License][license-shield]][license-url] [![Release][release-shield]][release-url] ![Maintenance][maintained-shield]
+<p align="center">
+  <img alt="Coverage" src="https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$" />
+  &nbsp;
+  <a href="https://github.com/H3nSte1n/coverage-badge-creator/actions/workflows/CI.yml"><img alt="CI" src="https://github.com/H3nSte1n/coverage-badge-creator/workflows/CI/badge.svg?style=flat" /></a>
+  &nbsp;
+  <a href="https://github.com/H3nSte1n/coverage-badge-creator/actions/workflows/Build.yml"><img alt="Build" src="https://github.com/H3nSte1n/coverage-badge-creator/workflows/Build/badge.svg?style=flat" /></a>
+  &nbsp;
+  <a href="https://github.com/H3nSte1n/coverage-badge-creator/actions/workflows/Code-Style.yml"><img alt="Code Style" src="https://github.com/H3nSte1n/coverage-badge-creator/workflows/Code-Style/badge.svg?style=flat" /></a>
+</p>
+<p align="center">
+  <a href="https://github.com/H3nSte1n/coverage-badge-creator/blob/master/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat" /></a>
+  &nbsp;
+  <a href="https://GitHub.com/H3nSte1n/coverage-badge-creator/releases/"><img alt="Release" src="https://img.shields.io/github/release/H3nSte1n/coverage-badge-creator.svg?style=flat" /></a>
+  &nbsp;
+  <img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat" />
+</p>
 <br><br>
 
 Coverage Badge Creator reads your test coverage report and inserts live badges into your README — for any language, via GitHub Action or npm.
@@ -323,13 +336,5 @@ This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://
 
 
 <!--infos-->
-[ci]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/CI/badge.svg?style=flat
-[build]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/Build/badge.svg?style=flat
-[code-style]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/Code-Style/badge.svg?style=flat
-[maintained-shield]: https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat
-[release-shield]: https://img.shields.io/github/release/H3nSte1n/coverage-badge-creator.svg?style=flat
-[release-url]: https://GitHub.com/H3nSte1n/coverage-badge-creator/releases/
 [issues-shield]: https://img.shields.io/github/issues/H3nSte1n/coverage-badge-creator.svg?style=flat
 [issues-url]: https://github.com/H3nSte1n/coverage-badge-creator/issues
-[license-shield]: https://img.shields.io/badge/License-MIT-yellow.svg?style=flat
-[license-url]: https://github.com/H3nSte1n/coverage-badge-creator/blob/master/LICENSE
