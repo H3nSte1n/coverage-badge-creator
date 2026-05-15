@@ -31,8 +31,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Globals = void 0;
-const ArgvOptionsEnum_1 = __nccwpck_require__(487);
 const path_1 = __importDefault(__nccwpck_require__(928));
+const ArgvOptionsEnum_1 = __nccwpck_require__(487);
 class Globals {
     constructor() {
         if (!Globals.instance) {
@@ -66,7 +66,7 @@ Globals.CONFIG_PATH = './.badge-config';
 Globals.DEFAULT_COV_PATH = './coverage/coverage-summary.json';
 Globals.COVERAGE_CATEGORIES = ['statements', 'branches', 'functions', 'lines'];
 Globals.BADGE_BASE_URL = '![](https://img.shields.io/badge/';
-Globals.BADGE_BASE_URL_PATTERN = '\\!\\[]\\(https:\\/\\/img\\.shields\\.io\\/badge\\/.*prefix=&PATTERN&\\)';
+Globals.BADGE_BASE_URL_PATTERN = '\\!\\[]\\(https:\\/\\/img\\.shields\\.io\\/badge\\/[^)]*prefix=&PATTERN&\\)';
 Globals.BASE_README_PATH = './README.md';
 Globals.BADGES = {};
 Globals.FORMAT = undefined;
@@ -90,7 +90,7 @@ const SetupValidation_1 = __nccwpck_require__(230);
 const Controller_1 = __nccwpck_require__(3);
 const FormatEnum_1 = __nccwpck_require__(202);
 function getInput(name) {
-    return (process.env[`INPUT_${name.replace(/ /g, '_').toUpperCase()}`] ?? '').trim();
+    return (process.env[`INPUT_${name.replace(/[ -]/g, '_').toUpperCase()}`] ?? '').trim();
 }
 function setOutput(name, value) {
     const outputFile = process.env['GITHUB_OUTPUT'];
@@ -519,7 +519,8 @@ exports.Badge = void 0;
 const Globals_1 = __nccwpck_require__(923);
 class Badge {
     static create(options, stats, prefix) {
-        let badgeURL = this.badgeBaseURL + `Coverage-${Math.round(stats.coverage)}${encodeURI('%')}-${stats.color}.svg?`;
+        const label = prefix.charAt(0).toUpperCase() + prefix.slice(1);
+        let badgeURL = this.badgeBaseURL + `${label}-${Math.round(stats.coverage)}${encodeURI('%')}-${stats.color}.svg?`;
         for (const option of Object.keys(options)) {
             badgeURL = badgeURL.concat(`${option}=${options[option]}&`);
         }
