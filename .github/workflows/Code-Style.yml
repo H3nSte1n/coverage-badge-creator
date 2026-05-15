@@ -2,6 +2,9 @@ name: Code-Style
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   code-style:
     runs-on: ubuntu-latest
