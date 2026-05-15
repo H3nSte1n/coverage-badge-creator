@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>coverage-badge-creator · two directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f3ea;
+  --paper: #ffffff;
+  --ink: #1a1a18;
+  --ink-soft: #6b6759;
+  --rule: #d9d2bc;
+  --accent: #83A603;
+  --pink: #f4a3c0;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+body {
+  font-family: 'Geist', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: white; }
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 56px 32px 80px;
+  flex: 1;
+}
+
+header.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 32px;
+  margin-bottom: 56px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.intro-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.intro h1 {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: clamp(40px, 5.5vw, 64px);
+  line-height: 1;
+  margin: 0 0 14px;
+  letter-spacing: -.015em;
+}
+.intro h1 em { color: var(--accent); }
+.intro p {
+  font-size: 16px;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin: 0;
+}
+.intro-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+  display: grid;
+  gap: 4px;
+  text-align: right;
+  white-space: nowrap;
+}
+.intro-meta strong { color: var(--ink); }
+@media (max-width: 760px) {
+  header.intro { grid-template-columns: 1fr; }
+  .intro-meta { text-align: left; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 920px) { .grid { grid-template-columns: 1fr; } }
+
+.card {
+  position: relative;
+  background: var(--paper);
+  border-radius: 18px;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .2s cubic-bezier(.2,.7,.3,1), box-shadow .2s;
+  text-decoration: none;
+  color: inherit;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -20px rgba(0,0,0,.25); }
+.card-preview {
+  aspect-ratio: 16 / 10;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+}
+.card-preview iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 200%; height: 200%;
+  border: 0;
+  transform: scale(.5);
+  transform-origin: top left;
+  pointer-events: none;
+  background: white;
+}
+.card-body {
+  padding: 24px 24px 28px;
+  display: grid;
+  gap: 12px;
+}
+.card-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.card-title {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1;
+  margin: 0;
+}
+.card-b .card-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; letter-spacing: -.02em; }
+.card-desc {
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  margin: 0;
+}
+.card-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+.trait {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  padding: 4px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--ink-soft);
+}
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+footer.foot {
+  border-top: 1px solid var(--rule);
+  padding: 28px 32px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+footer.foot a { color: var(--ink); }
+footer.foot a:hover { color: var(--accent); }
+
+@media (max-width: 720px) {
+  .wrap { padding: 32px 18px 56px; }
+  header.intro { margin-bottom: 32px; padding-bottom: 18px; gap: 18px; }
+  .intro h1 { font-size: 36px; margin-bottom: 10px; }
+  .intro p { font-size: 14.5px; }
+  .grid { gap: 16px; }
+  .card-body { padding: 18px 18px 22px; }
+  .card-title { font-size: 24px; }
+  .card-desc { font-size: 13.5px; }
+  .trait { font-size: 10px; padding: 3px 7px; }
+  footer.foot { padding: 22px 18px; font-size: 11.5px; }
+}
+
+.label-strip {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  background: var(--accent);
+  color: white;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.card-b .label-strip { background: #1a1a18; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="intro">
+    <div>
+      <div class="intro-eyebrow">coverage-badge-creator · 2 directions</div>
+      <h1>Two takes on the same <em>idea</em>.</h1>
+      <p>Pick the one that feels right. Both cover the same content — hero with a before/after README, quickstart, token reference, live badge playground, config, FAQ — they just dress it differently.</p>
+    </div>
+    <div class="intro-meta">
+      <div><strong>Package</strong> · coverage-badge-creator</div>
+      <div><strong>Maintainer</strong> · @H3nSte1n</div>
+      <div><strong>License</strong> · MIT</div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <a class="card card-a" href="direction-a.html">
+      <span class="label-strip">A · Editorial</span>
+      <div class="card-preview">
+        <iframe src="direction-a.html" loading="lazy" title="Direction A preview"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Docs Studio</div>
+        <h2 class="card-title">Editorial calm, with playful punctuation.</h2>
+        <p class="card-desc">Swiss-y layout, sticky side TOC, generous whitespace. Instrument Serif italics carry the personality, JetBrains Mono carries the tokens. Live playground feels like a real docs site.</p>
+        <div class="card-traits">
+          <span class="trait">serif display</span>
+          <span class="trait">sticky TOC</span>
+          <span class="trait">subtle motion</span>
+          <span class="trait">dark mode</span>
+        </div>
+        <span class="card-cta">Open direction A →</span>
+      </div>
+    </a>
+
+    <a class="card card-b" href="direction-b.html">
+      <span class="label-strip">B · Playful</span>
+      <div class="card-preview">
+        <iframe src="direction-b.html" loading="lazy" title="Direction B preview"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">Sticker Pack</div>
+        <h2 class="card-title">Bold, tactile, badges-as-stickers.</h2>
+        <p class="card-desc">Bricolage Grotesque + Caveat script for a confident, friendly hero. Real shields-style badges float as stickers in the background; a chunky animated coverage counter anchors the page.</p>
+        <div class="card-traits">
+          <span class="trait">stickers</span>
+          <span class="trait">big counter</span>
+          <span class="trait">brutalist cards</span>
+          <span class="trait">dark mode</span>
+        </div>
+        <span class="card-cta">Open direction B →</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<footer class="foot">
+  Both directions ship with the same Tweaks (accent · type · radius · density) — toggle the panel from the toolbar.
+  &nbsp;·&nbsp;
+  <a href="https://github.com/H3nSte1n/coverage-badge-creator" target="_blank" rel="noreferrer">github.com/H3nSte1n/coverage-badge-creator</a>
+</footer>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<h1>Coverage Badge Creator</h1>  
+<h1>Coverage Badge Creator</h1>
 <br>
 
 ![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$)
@@ -12,6 +12,8 @@
 <br><br>
 
 Coverage Badge Creator reads your test coverage report and inserts live badges into your README — for any language, via GitHub Action or npm.
+
+**[→ Interactive docs site](https://h3nste1n.github.io/coverage-badge-creator/)**
 
 <details open="open">
   <summary>Table of Contents</summary>
@@ -35,9 +37,7 @@ Coverage Badge Creator reads your test coverage report and inserts live badges i
         <li><a href="#extended">Extended</a></li>
       </ul>
     </li>
-    <li><a href="#npm--yarn-installation">npm / yarn Installation</a></li>
     <li><a href="#requirements">Requirements</a></li>
-    <li><a href="#built-with">Built With</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -49,14 +49,27 @@ Coverage Badge Creator reads your test coverage report and inserts live badges i
 ## Quick Start
 
 **Via GitHub Action** — works for any language, no Node.js required:
+
 ```yaml
-- uses: H3nSte1n/coverage-badge-creator@v2
-  with:
-    format: istanbul   # istanbul · lcov · cobertura · coverage-py
-    commit: true       # auto-commit the updated README
+# .github/workflows/coverage.yml
+name: Coverage badges
+on: [push]
+jobs:
+  badges:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: <your test command here>   # produces a coverage report
+      - uses: H3nSte1n/coverage-badge-creator@v2
+        with:
+          format: istanbul   # istanbul · lcov · cobertura · coverage-py
+          commit: true       # auto-commit the updated README
 ```
 
 **Via npm** — for JavaScript projects that want a local script:
+
 ```sh
 npm install --save-dev coverage-badge-creator
 ```
@@ -64,6 +77,9 @@ npm install --save-dev coverage-badge-creator
 "scripts": {
   "coverage:badge": "coverage-badge-creator"
 }
+```
+```sh
+npm test && npm run coverage:badge
 ```
 
 
@@ -74,9 +90,12 @@ npm install --save-dev coverage-badge-creator
 Generate a coverage file in one of the supported formats:
 
 **JavaScript / TypeScript (Jest)**
-```sh
-# jest.config.js: add 'json-summary' to coverageReporters
-# output: coverage/coverage-summary.json  →  format: istanbul
+```js
+// jest.config.js — add 'json-summary' to coverageReporters
+module.exports = {
+  coverageReporters: ['json-summary', 'text'],
+};
+// output: coverage/coverage-summary.json  →  format: istanbul
 ```
 
 **JavaScript / TypeScript (Mocha + NYC)**
@@ -105,13 +124,14 @@ gcov2lcov -infile coverage.out -outfile coverage.info
 
 **Java (JaCoCo)**
 ```sh
-# JaCoCo generates Cobertura XML via the cobertura report task
+./gradlew test jacocoTestReport
 # output: build/reports/cobertura.xml  →  format: cobertura
 ```
 
 **Ruby**
 ```sh
 # SimpleCov with lcov formatter
+bundle exec rspec
 # output: coverage/lcov/project.lcov  →  format: lcov
 ```
 
@@ -119,13 +139,15 @@ gcov2lcov -infile coverage.out -outfile coverage.info
 
 ### Step 2: Add placeholders to your README
 
-Insert any of these keys anywhere in your README. They will be replaced with live badge images:
+Insert any of these tokens anywhere in your README. After the tool runs, each token is replaced with a live badge image:
 
- * $coverage$
- * $statements$
- * $branches$
- * $functions$
- * $lines$
+```md
+<!-- Before -->
+$coverage$   $statements$   $branches$   $functions$   $lines$
+
+<!-- After (the tool replaces each token with a badge URL) -->
+![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$)
+```
 
 _The surrounding dollar signs are required._
 
@@ -174,6 +196,9 @@ Add a step after your test run. The action commits the updated README automatica
     commit: true
 ```
 
+> [!NOTE]
+> The workflow needs `permissions: contents: write` (or a PAT) when `commit: true` is set.
+
 **Action inputs**
 
 | Input | Description | Default |
@@ -200,6 +225,13 @@ Add the command to your `package.json` and run it after your test step:
 npm run coverage:badge
 ```
 
+Install:
+```sh
+npm install --save-dev coverage-badge-creator
+# or
+yarn add --dev coverage-badge-creator
+```
+
 
 ## Config
 
@@ -216,7 +248,7 @@ _For a full example see [.conversion-badge-config](https://github.com/H3nSte1n/c
 
 | Value | Coverage tool | Typical output file |
 |---|---|---|
-| `istanbul` (default) | Jest, NYC, Istanbul | `coverage/coverage-summary.json` |
+| `istanbul` / `jest` (default) | Jest, NYC, Istanbul | `coverage/coverage-summary.json` |
 | `lcov` | Go, C/C++, Ruby, Python (with lcov reporter) | `coverage/lcov.info` |
 | `cobertura` | Java (JaCoCo), Python (`coverage xml`), .NET | `coverage.xml` |
 | `coverage-py` | Python (`coverage json`) | `coverage.json` |
@@ -233,6 +265,7 @@ _For a full example see [.conversion-badge-config](https://github.com/H3nSte1n/c
 {
   "badges": {
     "coverage": {
+      "style": "for-the-badge",
       "logo": "github",
       "color": "blue"
     }
@@ -242,17 +275,12 @@ _For a full example see [.conversion-badge-config](https://github.com/H3nSte1n/c
 **Available badge keys:** `coverage` · `statements` · `branches` · `functions` · `lines`
 
 **Options**
- * style  
- ![plastic][style-plastic] ![flat][style-flat] ![flat-square][style-flat-square] ![flat-for-the-badge][style-for-the-badge] ![social][style-social]
- * logo  
-  ![kotlin][logo-kotlin] ![medium][logo-medium] ![github][logo-github]
- * logoColor  
- ![blue][logo-blue] ![green][logo-green] ![white][logo-black]
- * color  
-  ![blue][color-blue] ![green][color-green] ![white][color-black]
- * link  
-  ![blue][link-github] ![green][link-medium] ![white][link-reddit]
- 
+ * `style` — `flat` · `flat-square` · `plastic` · `for-the-badge` · `social`
+ * `logo` — any [shields.io logo slug](https://simpleicons.org/) (e.g. `jest`, `github`, `kotlin`)
+ * `logoColor` — color of the logo icon
+ * `color` — hex without `#`, or a [shields.io named color](https://shields.io/)
+ * `link` — URL the badge points at
+
  _For all options → ![](https://img.shields.io/badge/Shields.io-informational?style=for-the-badge&logo=Shields.io&logoColor=white&color=black&link=https://shields.io/)_
 
 ### Extended
@@ -268,30 +296,10 @@ _For a full example see [.conversion-badge-config](https://github.com/H3nSte1n/c
   ```
 
 
-## npm / yarn Installation
-
-> If you're using the GitHub Action, no local installation is needed.
-
-[`npm`](https://www.npmjs.com/package/coverage-badge-creator):
-```sh
-npm install --save-dev coverage-badge-creator
-```
-[`yarn`](https://yarnpkg.com/en/package/coverage-badge-creator):
-```sh
-yarn add --dev coverage-badge-creator
-```
-
-
 ## Requirements
 
 * **GitHub Action** — no local requirements; Node.js is provided by GitHub.
-* **npm / yarn** — Node.js > v10.0.0
-
-
-## Built With
-* [Node](https://nodejs.org/en/)
-* [Typescript](https://www.typescriptlang.org/)
-* [Jest](https://jestjs.io/)
+* **npm / yarn** — Node.js ≥ 20
 
 
 ## Contributing
@@ -318,29 +326,6 @@ This npm package is primarily the work of [Henry Steinhauer (H3nSte1n)](https://
 
 
 
-
-<!--shield-styles-->
-[style-plastic]: https://img.shields.io/badge/plastic-83A603.svg?style=plastic
-[style-flat]: https://img.shields.io/badge/flat-83A603.svg?style=flat
-[style-flat-square]: https://img.shields.io/badge/flat_square-83A603.svg?style=flat-square
-[style-for-the-badge]: https://img.shields.io/badge/for_the_badge-83A603.svg?style=for-the-badge
-[style-social]: https://img.shields.io/badge/social-83A603.svg?style=social
-
-[logo-github]: https://img.shields.io/badge/logo-github.svg?logo=github
-[logo-kotlin]: https://img.shields.io/badge/logo-kotlin.svg?logo=kotlin
-[logo-medium]: https://img.shields.io/badge/logo-medium.svg?logo=medium
-
-[logo-blue]: https://img.shields.io/badge/blue-83A603.svg?logo=github&logoColor=blue
-[logo-green]: https://img.shields.io/badge/green-83A603.svg?logo=kotlin&logoColor=green
-[logo-black]: https://img.shields.io/badge/black-83A603.svg?logo=medium&logoColor=black
-
-[color-blue]: https://img.shields.io/badge/blue-83A603.svg?color=blue
-[color-green]: https://img.shields.io/badge/green-83A603.svg?green=green
-[color-black]: https://img.shields.io/badge/black-83A603.svg?color=black
-
-[link-github]: https://img.shields.io/badge/Github-83A603.svg?link=https://github.com/
-[link-medium]: https://img.shields.io/badge/Medium-83A603.svg?link=https://medium.com/
-[link-reddit]: https://img.shields.io/badge/Reddit-83A603.svg?link=https://www.reddit.com/
 
 <!--infos-->
 [ci]: https://github.com/H3nSte1n/coverage-badge-creator/workflows/CI/badge.svg?style=flat
