@@ -433,7 +433,9 @@ function QuickstartNpm() {
             },
           ]}
         />
-        <CodeBlock language="sh" tabs={[{ label: 'run', code: 'npm run test && npm run coverage:badge' }]} />
+        <div style={{ marginTop: 12 }}>
+          <CodeBlock language="sh" tabs={[{ label: 'run', code: 'npm run test && npm run coverage:badge' }]} />
+        </div>
       </Step>
     </div>
   );
@@ -471,34 +473,34 @@ const LANG_SETUP = [
     format: 'istanbul',
     code: `# jest.config.js → add 'json-summary' to coverageReporters
 jest --coverage
-# → coverage/coverage-summary.json   →  format: istanbul`,
+# → coverage/coverage-summary.json   →  type: istanbul`,
   },
   {
     label: 'JS · Mocha',
     format: 'istanbul',
     code: `nyc --reporter=json-summary mocha
-# → coverage/coverage-summary.json   →  format: istanbul`,
+# → coverage/coverage-summary.json   →  type: istanbul`,
   },
   {
     label: 'Go',
     format: 'lcov',
     code: `go test -coverprofile=coverage.out ./...
+# Go outputs its own format — convert to lcov first:
 gcov2lcov -infile coverage.out -outfile coverage.info
-# → coverage.info   →  format: lcov`,
+# → coverage.info   →  type: lcov`,
   },
   {
     label: 'Java (JaCoCo)',
     format: 'cobertura',
-    code: `# JaCoCo emits Cobertura XML via the cobertura report task
-./gradlew test jacocoTestReport
-# → build/reports/cobertura.xml   →  format: cobertura`,
+    code: `./gradlew test jacocoTestReport
+# → build/reports/cobertura.xml   →  type: cobertura`,
   },
   {
     label: 'Ruby',
     format: 'lcov',
     code: `# SimpleCov with the lcov formatter
 bundle exec rspec
-# → coverage/lcov/project.lcov   →  format: lcov`,
+# → coverage/lcov/project.lcov   →  type: lcov`,
   },
 ];
 
@@ -790,7 +792,15 @@ function Playground() {
 
         <div className="play-preview">
           <div className="play-stage">
-            <Badge label={label} value={value} color={color} style={style} />
+            {logo ? (
+              <img
+                src={`https://img.shields.io/badge/${encodeURIComponent(label)}-${encodeURIComponent(value)}-${color.replace('#', '')}.svg?style=${style}&logo=${encodeURIComponent(logo)}${logoColor ? '&logoColor=' + encodeURIComponent(logoColor) : ''}`}
+                alt={label}
+                style={{ height: style === 'for-the-badge' ? 28 : 20 }}
+              />
+            ) : (
+              <Badge label={label} value={value} color={color} style={style} />
+            )}
           </div>
           <div className="play-snippets">
             <CodeBlock language="json" tabs={[{ label: '.badge-config', lang: 'json', code: config }]} />
@@ -895,7 +905,7 @@ function Config() {
           />
           <ul className="opt-list">
             <li>
-              <code>style</code> — <span className="muted">flat, flat-square, plastic, for-the-badge, social</span>
+              <code>style</code> — <span className="muted">flat, flat-square, plastic, for-the-badge</span>
             </li>
             <li>
               <code>color</code> — <span className="muted">hex without #, or a shields.io named color</span>
@@ -953,10 +963,10 @@ function Compatibility() {
       <div className="built-grid">
         <div className="built-card">
           <span className="built-k">GitHub Action</span>
-          <span className="built-v">no local setup</span>
+          <span className="built-v">no Node.js needed</span>
         </div>
         <div className="built-card">
-          <span className="built-k">npm / yarn</span>
+          <span className="built-k">npm / yarn only</span>
           <span className="built-v">Node ≥ 20</span>
         </div>
         <div className="built-card">

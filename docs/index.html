@@ -80,6 +80,7 @@ html.dark {
 }
 
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 html, body { margin: 0; padding: 0; }
 body {
   font-family: var(--font-body);
@@ -641,7 +642,7 @@ html.dark .token-chip:hover { color: #d4e386; }
 .key-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
 .key-name { display: inline-block; font-family: var(--font-mono); font-size: 14px; color: var(--accent); margin-bottom: 8px; font-weight: 600; }
 .key-desc { color: var(--ink-soft); font-size: 14px; margin: 0 0 14px; }
-.key-preview { padding-top: 12px; border-top: 1px solid var(--rule); }
+.key-preview { padding-top: 12px; border-top: 1px solid var(--rule); overflow-x: auto; }
 .callout {
   display: flex;
   align-items: flex-start;
@@ -696,7 +697,9 @@ html.dark .callout code { background: rgba(255,255,255,.08); }
 .field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 .seg { display: flex; flex-wrap: wrap; gap: 4px; padding: 3px; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius-sm); }
 .seg button {
-  flex: 1 0 auto;
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
   background: transparent;
   border: 0;
   border-radius: 5px;
@@ -714,8 +717,10 @@ input[type="color"] { appearance: none; -webkit-appearance: none; cursor: pointe
 .play-stage {
   flex: 0 0 auto;
   padding: 48px 24px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
   background:
     radial-gradient(circle at 1px 1px, var(--rule) 1px, transparent 0) 0 0 / 14px 14px,
     var(--paper);
