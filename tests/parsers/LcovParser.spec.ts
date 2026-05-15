@@ -39,6 +39,15 @@ describe('LcovParser', () => {
     expect(result.total['functions'].pct).toBe(0);
   });
 
+  it('should ignore lines with unrecognized keys that have valid integers', () => {
+    // DA:1,1 is valid lcov line-hit syntax — key DA, val 1 — not a known counter key
+    const content = 'TN:\nSF:src/file.ts\nDA:1,1\nLF:10\nLH:8\nBRF:4\nBRH:3\nFNF:2\nFNH:2\nend_of_record\n';
+    const result = parser.parse(content);
+
+    // DA:1 should be ignored; LF/LH drive lines pct → 80%
+    expect(result.total['lines'].pct).toBeCloseTo(80, 2);
+  });
+
   it('should produce all four required keys in total', () => {
     const fileContent = fs.readFileSync('./tests/data/test-coverage.info', 'utf-8');
     const result = parser.parse(fileContent);

@@ -44,6 +44,30 @@ describe('CoveragePyJsonParser', () => {
     expect(result.total).toHaveProperty('functions');
   });
 
+  it('should default percent_covered to 0 when missing', () => {
+    const content = JSON.stringify({ totals: {} });
+    const result = parser.parse(content);
+
+    expect(result.total['lines'].pct).toBe(0);
+    expect(result.total['statements'].pct).toBe(0);
+    expect(result.total['branches'].pct).toBe(0);
+  });
+
+  it('should use linesPct for branches when num_branches is 0', () => {
+    const content = JSON.stringify({ totals: { percent_covered: 60.0, num_branches: 0 } });
+    const result = parser.parse(content);
+
+    expect(result.total['branches'].pct).toBe(60.0);
+  });
+
+  it('should treat missing covered_branches as 0 when num_branches > 0', () => {
+    const content = JSON.stringify({ totals: { percent_covered: 50.0, num_branches: 10 } });
+    const result = parser.parse(content);
+
+    // covered_branches defaults to 0 → 0/10*100 = 0
+    expect(result.total['branches'].pct).toBe(0);
+  });
+
   it('should throw on invalid JSON', () => {
     expect(() => parser.parse('not-json')).toThrow();
   });
