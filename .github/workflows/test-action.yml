@@ -34,6 +34,9 @@ jobs:
 
       - name: Verify all five badges were inserted
         run: |
+          echo "--- README after action ---"
+          cat /tmp/test-readme.md
+          echo "--- end README ---"
           grep -q "prefix=\$coverage\$"   /tmp/test-readme.md
           grep -q "prefix=\$statements\$" /tmp/test-readme.md
           grep -q "prefix=\$branches\$"   /tmp/test-readme.md
@@ -61,6 +64,9 @@ jobs:
 
       - name: Verify all five badges were inserted
         run: |
+          echo "--- README after action ---"
+          cat /tmp/test-readme.md
+          echo "--- end README ---"
           grep -q "prefix=\$coverage\$"   /tmp/test-readme.md
           grep -q "prefix=\$statements\$" /tmp/test-readme.md
           grep -q "prefix=\$branches\$"   /tmp/test-readme.md
@@ -88,6 +94,9 @@ jobs:
 
       - name: Verify all five badges were inserted
         run: |
+          echo "--- README after action ---"
+          cat /tmp/test-readme.md
+          echo "--- end README ---"
           grep -q "prefix=\$coverage\$"   /tmp/test-readme.md
           grep -q "prefix=\$statements\$" /tmp/test-readme.md
           grep -q "prefix=\$branches\$"   /tmp/test-readme.md
@@ -115,6 +124,9 @@ jobs:
 
       - name: Verify all five badges were inserted
         run: |
+          echo "--- README after action ---"
+          cat /tmp/test-readme.md
+          echo "--- end README ---"
           grep -q "prefix=\$coverage\$"   /tmp/test-readme.md
           grep -q "prefix=\$statements\$" /tmp/test-readme.md
           grep -q "prefix=\$branches\$"   /tmp/test-readme.md
