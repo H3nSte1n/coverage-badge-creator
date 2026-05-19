@@ -1,0 +1,47 @@
+version: 2
+
+updates:
+  # Keep GitHub Actions versions up to date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    assignees:
+      - "H3nSte1n"
+    commit-message:
+      prefix: "chore"
+    # Group all minor and patch updates into a single PR to reduce noise.
+    # Security updates are always opened as individual PRs regardless of groups.
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Keep npm dev dependencies up to date
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+    assignees:
+      - "H3nSte1n"
+    commit-message:
+      prefix: "chore"
+    # Group all minor and patch updates into a single PR to reduce noise.
+    # Security updates are always opened as individual PRs regardless of groups.
+    groups:
+      dev-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
