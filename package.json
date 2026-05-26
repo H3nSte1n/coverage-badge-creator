@@ -51,7 +51,7 @@
   },
   "homepage": "https://github.com/H3nSte1n/coverage-badge-creator#readme",
   "devDependencies": {
-    "@eslint/js": "^9.0.0",
+    "@eslint/js": "^10.0.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^20.0.0",
     "@types/winston": "^2.4.4",
