@@ -12,7 +12,7 @@ jobs:
     name: 'istanbul — Jest / NYC'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v6
         with:
@@ -49,7 +49,7 @@ jobs:
     name: 'lcov — Go / Ruby / C++'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Copy test README template
         run: cp tests/data/test-readme-template.md /tmp/test-readme.md
@@ -79,7 +79,7 @@ jobs:
     name: 'cobertura — Java / Python / .NET'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Copy test README template
         run: cp tests/data/test-readme-template.md /tmp/test-readme.md
@@ -109,7 +109,7 @@ jobs:
     name: 'coverage-py — Python'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Copy test README template
         run: cp tests/data/test-readme-template.md /tmp/test-readme.md
