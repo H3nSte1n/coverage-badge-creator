@@ -50,6 +50,9 @@
     "url": "https://github.com/H3nSte1n/coverage-badge-creator"
   },
   "homepage": "https://github.com/H3nSte1n/coverage-badge-creator#readme",
+  "overrides": {
+    "brace-expansion": "^5.0.8"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/jest": "^30.0.0",
