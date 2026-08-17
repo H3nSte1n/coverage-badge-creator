@@ -138,7 +138,7 @@ Insert any of these tokens anywhere in your README. After the tool runs, each to
 
 ```md
 <!-- Before -->
-$coverage$   ![](https://img.shields.io/badge/Statements-90%25-.svg?prefix=$statements$)   ![](https://img.shields.io/badge/Branches-90%25-.svg?prefix=$branches$)   ![](https://img.shields.io/badge/Functions-90%25-.svg?prefix=$functions$)   $lines$
+$coverage$   $statements$   $branches$   $functions$   $lines$
 
 <!-- After (the tool replaces each token with a badge URL) -->
 ![](https://img.shields.io/badge/Coverage-98%25-83A603.svg?prefix=$coverage$)
