@@ -45,10 +45,6 @@ updates:
         update-types:
           - "minor"
           - "patch"
-    # typescript is pinned via a side-by-side compiler alias (see CONTRIBUTING.md)
-    # so that ts-jest / typescript-eslint keep getting the TS6-compatible API they
-    # require. Block major bumps here so a future TypeScript 7-compatible release
-    # of these tools is a deliberate, reviewed change rather than an auto-opened PR.
     ignore:
       - dependency-name: "typescript"
         update-types:
