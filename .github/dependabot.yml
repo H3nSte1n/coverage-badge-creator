@@ -45,3 +45,13 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      - dependency-name: "typescript"
+        update-types:
+          - "version-update:semver-major"
+      - dependency-name: "ts-jest"
+        update-types:
+          - "version-update:semver-major"
+      - dependency-name: "typescript-eslint"
+        update-types:
+          - "version-update:semver-major"
