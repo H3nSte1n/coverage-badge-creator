@@ -16,6 +16,24 @@ Pull requests are the best way to propose changes to the codebase. We actively w
 4. Make sure that the linter and the formatter passes.
 5. Issue that pull request!
 
+## Local development
+This project pins TypeScript to a side-by-side compiler layout:
+
+```json
+"@typescript/native": "npm:typescript@^7.0.2",
+"typescript": "npm:@typescript/typescript6@^6.0.2"
+```
+
+`ts-jest` and `typescript-eslint` don't support TypeScript 7's native compiler yet — they
+need the classic JS compiler API, which the `typescript` alias provides via the TS6
+compatibility package. `npx tsc` still runs the real, native TypeScript 7 compiler.
+
+**Do not** run `npm install typescript@latest` or `npm update typescript` — either will
+replace the alias with a plain TypeScript 7 install and break `npm install` for everyone
+else (`ts-jest`/`typescript-eslint` peer dependency conflicts). If TypeScript 7 support
+lands upstream in `ts-jest` and `typescript-eslint`, this alias setup can be removed in
+favor of installing `typescript` directly again.
+
 ## Any contributions you make will be under the MIT Software License
 In short, when you submit code changes, your submissions will be understood under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
