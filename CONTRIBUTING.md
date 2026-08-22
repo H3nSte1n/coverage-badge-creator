@@ -24,12 +24,12 @@ This project pins TypeScript to a side-by-side compiler layout:
 "typescript": "npm:@typescript/typescript6@^6.0.2"
 ```
 
-`ts-jest` and `typescript-eslint` don't support TypeScript 7's native compiler yet — they
+`ts-jest` and `typescript-eslint` don't support TypeScript 7's native compiler yet. They
 need the classic JS compiler API, which the `typescript` alias provides via the TS6
 compatibility package. `npx tsc` still runs the real, native TypeScript 7 compiler.
 
-**Do not** run `npm install typescript@latest` or `npm update typescript` — either will
-replace the alias with a plain TypeScript 7 install and break `npm install` for everyone
+**Do not** run `npm install typescript@latest` or `npm update typescript`. Either one
+replaces the alias with a plain TypeScript 7 install and breaks `npm install` for everyone
 else (`ts-jest`/`typescript-eslint` peer dependency conflicts). If TypeScript 7 support
 lands upstream in `ts-jest` and `typescript-eslint`, this alias setup can be removed in
 favor of installing `typescript` directly again.
