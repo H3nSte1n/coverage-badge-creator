@@ -52,7 +52,7 @@
   "homepage": "https://github.com/H3nSte1n/coverage-badge-creator#readme",
   "overrides": {
     "brace-expansion": "^5.0.9",
-    "js-yaml": "^3.15.1"
+    "js-yaml": "^3.15.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
